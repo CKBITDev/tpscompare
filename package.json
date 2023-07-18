@@ -4,13 +4,17 @@
   "description": "application for course online",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/app.js ",
-    "build": "babel src -d build",
+    "dev": "nodemon src/app.js --exec babel-node src/app.js ",
+    "build": "rimraf build && babel src -d build",
     "serve": "node src/app.js",
-    "server": "babel-node ./src/app.js",
-    "pm2":"pm2 start npm -- run server --name api_hris"
+    "pm2": "pm2 start build/app.js --name api_hris",
+    "build:server": "npm run build && npm run pm2",
+    "build:restart": "npm run build && npm run pm2:restart",
+    "pm2:start": "pm2 start api_hris",
+    "pm2:delete": "pm2 delete api_hris",
+    "pm2:stop": "pm2 stop api_hris",
+    "pm2:restart": "pm2 restart api_hris"
   },
-  
   "keywords": [
     "course"
   ],
@@ -31,8 +35,11 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
-    "nodemon": "^2.0.22"
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/node": "^7.22.6",
+    "@babel/preset-env": "^7.1.6",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.1"
   }
 }

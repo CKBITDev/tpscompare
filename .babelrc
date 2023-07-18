@@ -1,5 +1,6 @@
 {
-    "presets": ["latest"],
+
+    "presets": ["@babel/preset-env"],
     "plugins": [
         ["dotenv-import", {
         "moduleName": "@env",
