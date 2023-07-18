@@ -23,7 +23,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(cookieParser())
 //app.use(middlewareLocale);
 app.use(router); 
-
 var server = app.listen(PORT, function () {
     if(database.authenticate){
         console.log('database established connect')
@@ -31,6 +30,6 @@ var server = app.listen(PORT, function () {
         console.log('database established not connect')
     }
     var host = HOST
-    var port = server.address().port
+    var port = PORT
     console.log("app listening at http://%s:%s", host, port)
 })
