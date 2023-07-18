@@ -1,7 +1,7 @@
 {
-  "name": "course-api",
+  "name": "api-hris",
   "version": "1.0.0",
-  "description": "application for course online",
+  "description": "application for api hris",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js --exec babel-node src/app.js ",
