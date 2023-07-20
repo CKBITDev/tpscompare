@@ -67,6 +67,7 @@ export default class AbsentController{
             const dateJamMasukKerja = dateAbsenServer+' '+ DateHelper.timeFormat(dataBody.start_time); 
 
             const empApproval = personel.data.to_userid;
+            
             if(absent){
                 //const idAbsent = absent.IDAbsent;
                 const timeAbsent = absent.data.TimeAbsent;

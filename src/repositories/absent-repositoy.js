@@ -82,7 +82,7 @@ export default class AbsentRepository extends BaseRepository{
             const result = await Database.conn(AbsentQuery.getDataAbsent(data));
             
             if(result.length == 0){
-                return ResponseRepo.Success(result);
+                return false;
             }   
 
             return ResponseRepo.Success(result[0]);

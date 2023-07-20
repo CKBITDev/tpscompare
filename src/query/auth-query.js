@@ -16,7 +16,13 @@ export default class AuthQuery{
     }
     static userDetail(data){
         
-        const query =  `SELECT t_user.user_id, 
+        const query =  `SELECT
+                                case 
+                                    when  absent.TimeAbsentOut is not null then now()
+                                    when absent.TimeAbsent is not null then "check_in"
+                                    else ""
+                                end as status_absent,
+                                 t_user.user_id, 
                                 employee.t_personel.employee_id, 
                                 concat_ws(' ',employee.t_personel.first_name,employee.t_personel.middle_name,employee.t_personel.last_name) fullname,  
                                 employee.t_level.description AS level, 
@@ -34,6 +40,7 @@ export default class AuthQuery{
                         LEFT JOIN employee.t_department ON employee.t_personel.department_id = employee.t_department.department_id 
                         LEFT JOIN employee.t_division ON employee.t_personel.division_id = employee.t_division.division_id 
                         LEFT JOIN master_param.t_area ON employee.t_personel.area_id = master_param.t_area.area_id 
+                        LEFT JOIN employee.at_absent absent ON employee.t_personel.employee_id = absent.CreatedUser and DateAbsent = now()
                         LEFT JOIN user_access.t_user ON t_user.employee_id = t_personel.employee_id  
                         WHERE employee.t_personel.employee_id ='${data.username}'`;
         return query;
