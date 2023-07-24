@@ -56,7 +56,6 @@ export default class ClosingSettlementController{
   static async otParam(req,res){
       try {
           let dataBody = req.body;
-          console.log(dataBody);
           let paramId;
           if (dataBody.day_type === "Hari Kerja") {
             paramId = "MOT";
@@ -106,7 +105,6 @@ export default class ClosingSettlementController{
           }       
           return Response.Success(res,resObj);
         } catch (error) {
-          console.log(error);
           return Response.Error(req,res,error.message,true);
         }
       

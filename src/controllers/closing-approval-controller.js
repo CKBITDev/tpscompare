@@ -114,10 +114,8 @@ export default class ClosingApprovalController{
         const dataBody = req.body;
         let idOvertime = dataBody.id_overtime.split(",");
         var response;
-        console.log(idOvertime);
         for (let index = 0; index < idOvertime.length; index++) {
             const id_overtime = idOvertime[index];   
-            console.log(id_overtime);
             var ot = await OvertimeRepository.dataOvertimeById(req,{id_over_time:id_overtime});
             ot = ot.data;
             // if(ot.appv_spr == 1){

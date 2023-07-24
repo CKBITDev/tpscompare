@@ -174,7 +174,6 @@ export default class OvertimeController{
             let dataBody = req.body;
             dataBody.employee_id = req.auth.employee_id;
             var validateOt = await OvertimeRepository.dataOvertimeByDate(req,dataBody);   
-            console.log(validateOt);
             if(validateOt){
                 return Response.Error(req,res,`Overtime anda untuk tanggal "${dataBody.over_date}" sudah terdaftar.`);
             }

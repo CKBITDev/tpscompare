@@ -27,7 +27,7 @@ export default class ApprovalAbsentRepository extends BaseRepository{
         try {    
             const result = await Database.conn(ApprovalAbsentQuery.getAbsentApprove(data));
             if(result.length == 0){
-                return ResponseRepo.Success(result);
+                return false;
             }
             return ResponseRepo.Success(result[0]);
         } catch (error) {

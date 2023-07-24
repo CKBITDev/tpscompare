@@ -26,7 +26,7 @@ export default class ApprovalAbsensiController{
             return Response.Error(req,res,error.message,true);
         }
     }    
-    static async rejectDataLate(){
+    static async rejectDataLate(req,res){
         try{
             const dataBody = req.body;
             let idAbsent = dataBody.IDAbsent.split(",");
@@ -37,43 +37,54 @@ export default class ApprovalAbsensiController{
                     ApprovalStatus:2,
                     ApprovalDate:DateHelper.dateTimeNow()
                 };
-                response = await AbsentRepository.update(req,data_absent,{IDAbsent:idAbsent});   
+                response = await AbsentRepository.update(req,data_absent,{id_absent:idAbsent});   
             }
-            if(response.success){    
-                return Response.SuccessMessage(res,"Data berhasil di Rejected");
+            if(response){
+                if(response.success){
+                    return Response.SuccessMessage(res,"Data berhasil di reject");
+                }else{
+                    return Response.Error(req,res,"Data gagal di reject");
+                }    
             }else{
-                return Response.Error(req,res,"Data gagal di Rejected");
+                return Response.Error(req,res,"Data gagal di reject");
             }
         } catch (error) {
             return Response.Error(req,res,error.message,true);
         }
     }
         
-    static async approveDataLate(){
+    static async approveDataLate(req,res){
         try{
             const dataBody = req.body;
             let idAbsent = dataBody.IDAbsent.split(",");
             var response;
             for (let index = 0; index < idAbsent.length; index++) {
                 const id_absent = idAbsent[index];   
-                var absent = await ApprovalAbsentRepository.getAbsentApprove({id_absent:id_absent});
-                var absent = absent.data;
-                var data_absent = {
-                    ApprovalStatus:1,
-                    ApprovalDate:DateHelper.dateTimeNow(),
-                };
-                if(absent.TimeAbsent){
-                    data_absent.TimeAbsent = absent.TimeAbsent;
+                var absent = await ApprovalAbsentRepository.getAbsentApprove(req,{id_absent:id_absent});
+                if(absent){
+
+                    absent = absent.data;
+                    var data_absent = {
+                        ApprovalStatus:1,
+                        ApprovalDate:DateHelper.dateTimeNow(),
+                    };
+                    if(absent.TimeAbsent){
+                        data_absent.TimeAbsent = absent.TimeAbsent;
+                    }
+                    if(absent.TimeAbsentOut){
+                        data_absent.TimeAbsentOut = absent.TimeAbsentOut;
+                    }
+                    response = await AbsentRepository.update(req,data_absent,{id_absent:idAbsent});   
                 }
-                if(absent.TimeAbsentOut){
-                    data_absent.TimeAbsentOut = absent.TimeAbsentOut;
-                }
-                response = await AbsentRepository.update(req,data_absent,{IDAbsent:idAbsent});   
             }
-            if(response.success){    
-                return Response.SuccessMessage(res,"Data berhasil di Approve");
+            if(response){
+                if(response.success){
+                    return Response.SuccessMessage(res,"Data berhasil di approve");
+                }else{
+                    return Response.Error(req,res,"Data gagal di approve");
+                }    
             }else{
-                return Response.Error(req,res,"Data gagal di Approve");
+                return Response.Error(req,res,"Data gagal di approve");
             }
         } catch (error) {
             return Response.Error(req,res,error.message,true);
@@ -81,7 +92,7 @@ export default class ApprovalAbsensiController{
     }
 
        
-    static async rejectDataOutside(){
+    static async rejectDataOutside(req,res){
         try{
             const dataBody = req.body;
             let idAbsent = dataBody.IDAbsent;
@@ -91,18 +102,22 @@ export default class ApprovalAbsensiController{
                 OutsideRejectDate: DateHelper.dateTimeNow(),
                 OutsideRejectReason: dataBody.reason
             };
-            var response = await AbsentRepository.update(req,data_absent,{IDAbsent:idAbsent});   
+            var response = await AbsentRepository.update(req,data_absent,{id_absent:idAbsent});   
             
-            if(response.success){    
-                return Response.SuccessMessage(res,"Data berhasil di reject");
+            if(response){
+                if(response.success){
+                    return Response.SuccessMessage(res,"Data berhasil di reject");
+                }else{
+                    return Response.Error(req,res,"Data gagal di reject");
+                }    
             }else{
-                return Response.Error(req,res,response.message);
+                return Response.Error(req,res,"Data gagal di reject");
             }
         } catch (error) {
             return Response.Error(req,res,error.message,true);
         }
     }
-    static async approveDataOutside(){
+    static async approveDataOutside(req,res){
         try{
             const dataBody = req.body;
             let idAbsent = dataBody.IDAbsent;
@@ -111,12 +126,17 @@ export default class ApprovalAbsensiController{
                 ApprovalStatus:2,
                 OutsideApprovalDate: DateHelper.dateTimeNow()
             };
-            var response = await AbsentRepository.update(req,data_absent,{IDAbsent:idAbsent});   
+            var response = await AbsentRepository.update(req,data_absent,{id_absent:idAbsent});   
             
-            if(response.success){    
-                return Response.SuccessMessage(res,"Data berhasil di approve");
+            
+            if(response){
+                if(response.success){
+                    return Response.SuccessMessage(res,"Data berhasil di approve");
+                }else{
+                    return Response.Error(req,res,"Data gagal di approve");
+                }    
             }else{
-                return Response.Error(req,res,response.message);
+                return Response.Error(req,res,"Data gagal di approve");
             }
         } catch (error) {
             return Response.Error(req,res,error.message,true);
