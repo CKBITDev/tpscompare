@@ -17,10 +17,10 @@ export default class OvertimeController{
                 if(levels.includes(data.id_div)){
                     return Response.SuccessMessage(res,"");
                 }else{
-                    return Response.Error(req,res,`Divisi anda adalah "${data.division}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`);
+                    return Response.Error(req,res,{message:`Divisi anda adalah "${data.division}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`});
                 }
             }else{
-                return Response.Error(req,res,`Divisi anda adalah "${req.auth.divisi}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`);
+                return Response.Error(req,res,{message:`Divisi anda adalah "${req.auth.divisi}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`});
             }
           } catch (error) {
             return Response.Error(req,res,error,true);

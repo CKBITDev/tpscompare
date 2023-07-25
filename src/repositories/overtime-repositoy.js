@@ -37,8 +37,9 @@ export default class OvertimeRepository extends BaseRepository{
     static async dataHrDivision(req,data){
         try {    
             var result = await Database.conn(OvertimeQuery.userHrDivision(data));
-            return false;
-            
+            if(result.length == 0){
+                return false;
+            }
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
