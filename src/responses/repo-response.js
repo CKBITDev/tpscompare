@@ -1,3 +1,5 @@
+const { default: LogErrorHelper } = require("../helpers/logerror-helper");
+
 class  ResponseRepo{
     constructor(){
 
@@ -9,8 +11,16 @@ class  ResponseRepo{
             data:data,
         }
     }
-    static Error(message = 'error'){
-         return {
+    static NoData(){
+        return {
+            message:"No Data",
+            success:false,
+        }
+    }
+    
+    static Error(req,error,message = 'Something wrong on the server'){
+        LogErrorHelper.set(req,error);
+        return {
             message:message,
             success:false
         }

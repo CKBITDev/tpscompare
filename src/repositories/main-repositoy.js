@@ -16,7 +16,7 @@ export default class MainRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
               
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }
@@ -29,7 +29,7 @@ export default class MainRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
               
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }
@@ -44,7 +44,7 @@ export default class MainRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
               
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }
@@ -58,7 +58,7 @@ export default class MainRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
               
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }
@@ -71,7 +71,7 @@ export default class MainRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }

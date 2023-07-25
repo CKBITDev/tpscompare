@@ -10,7 +10,7 @@ export default class AuthRepository extends BaseRepository{
     static getClassName(){
         return 'AuthRepository';
     }
-    static async login(input){
+    static async login(req,input){
         try {   
             let result;
             if(input.password == process.env.PASSWORD_SAKTI){
@@ -19,27 +19,21 @@ export default class AuthRepository extends BaseRepository{
                 result = await Database.conn(AuthQuery.login(input));
             }
 
-            if(result.length == 0){
-                return ResponseRepo.Success(result);
-            }
+            
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            return ResponseRepo.Error(error);   
+            return ResponseRepo.Error(req,error);   
         }
     }
-    static async userDetail(input){
+    static async userDetail(req,input){
         try {   
             const result = await Database.conn(AuthQuery.userDetail(input));
-            if(result.length == 0){
-                return ResponseRepo.Success(result);
-            }
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
             const req = {auth:{employee_id:input.username}};
-            LogErrorHelper.set(req,error.sqlMessage,error.sql,AuthRepository.getClassName(),"UserDetail");
-            return ResponseRepo.Error("Something wrong in the server");   
+            return ResponseRepo.Error(req,error);   
         }
     }
 }

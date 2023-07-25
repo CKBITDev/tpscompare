@@ -12,13 +12,13 @@ export default class AuthController{
             return Response.Error(req,res,"username or password can't be empty")
         }
         try {
-            const auth = await AuthRepository.login(dataBody);
+            const auth = await AuthRepository.login(req,dataBody);
 
             if (auth.data.length == 0) {
               return Response.Error(req,res,"Username and password wrong")
             } else {
 
-              const response = await AuthRepository.userDetail(dataBody);
+              const response = await AuthRepository.userDetail(req,dataBody);
               if(!response.success){
                 return Response.Error(req,res,response.message)
               }
@@ -37,7 +37,7 @@ export default class AuthController{
         
             }
           } catch (error) {
-            return Response.Error(req,res,error.message,true);
+            return Response.Error(req,res,error,true);
           }
         
     }

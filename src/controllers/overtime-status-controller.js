@@ -13,7 +13,7 @@ export default class OvertimeStatusController{
             let data = await OvertimeStatusRepository.dataOvertime(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error.message,true);
+            return Response.Error(req,res,error,true);
           }
         
     }

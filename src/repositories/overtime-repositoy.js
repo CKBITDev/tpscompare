@@ -30,8 +30,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async dataHrDivision(req,data){
@@ -42,8 +42,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -57,8 +57,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -71,8 +71,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async dataWorktype(req){
@@ -84,8 +84,7 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            LogErrorHelper.set(req,error.sqlMessage,error.sql,OvertimeRepository.getClassName(),"checkIn");
-            return ResponseRepo.Error("Something wrong in the server");   
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async dataApprovalFlow(req,data){
@@ -97,8 +96,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async dataOvertimeByDate(req,data){
@@ -110,8 +109,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async dataOvertimeById(req,data){
@@ -123,8 +122,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async insertOvertime(req,data){
@@ -136,8 +135,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -150,8 +149,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -164,8 +163,8 @@ export default class OvertimeRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     

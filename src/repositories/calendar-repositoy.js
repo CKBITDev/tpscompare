@@ -19,8 +19,8 @@ export default class CalendarRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -33,8 +33,8 @@ export default class CalendarRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async eventData(req,data){
@@ -46,8 +46,8 @@ export default class CalendarRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 

@@ -1,7 +1,5 @@
 import Response from '../responses/response';
-import MainRepository from '../repositories/main-repositoy';
 import Geofence from '../helpers/geofence';
-import AbsentQuery from '../query/absent-query';
 import AbsentRepository from '../repositories/absent-repositoy';
 import TimezoneHelper from '../helpers/timezone-helper';
 import DateHelper from '../helpers/date-helper';
@@ -134,7 +132,7 @@ export default class AbsentController{
 
             return Response.SuccessMessage(res,`Anda Berhasil Clock In Pukul ${timeAbsenServer} ${zonaAbsenServer}, Terimakasih`);
           } catch (error) {
-            return Response.Error(req,res,error.message,true);
+            return Response.Error(req,res,error,true);
           }
         
     }
@@ -218,7 +216,7 @@ export default class AbsentController{
 
             return Response.SuccessMessage(res,`Anda Berhasil Clock Out Pukul ${timeAbsenServer} ${zonaAbsenServer}, Terimakasih`);
           } catch (error) {
-              return Response.Error(req,res,error.message,true);
+              return Response.Error(req,res,error,true);
           }
         
     }

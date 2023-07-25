@@ -18,8 +18,8 @@ export default class ClosingApprovalRepository extends BaseRepository{
             const result = await Database.conn(ClosingApprovalQuery.costStatus());
             return ResponseRepo.Success(result);
         }catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async data(req,data){
@@ -55,8 +55,8 @@ export default class ClosingApprovalRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     

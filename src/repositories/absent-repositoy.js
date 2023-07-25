@@ -18,8 +18,8 @@ export default class AbsentRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async checkOut(req,data,condition){
@@ -33,8 +33,8 @@ export default class AbsentRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async update(req,data,condition){
@@ -44,8 +44,8 @@ export default class AbsentRepository extends BaseRepository{
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     static async getLocationQr(req,input){
@@ -57,8 +57,8 @@ export default class AbsentRepository extends BaseRepository{
             return ResponseRepo.Success(result[0]);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -71,8 +71,7 @@ export default class AbsentRepository extends BaseRepository{
             }   
             return ResponseRepo.Success(result[0]);
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            return ResponseRepo.Error(req,error);   
         }
     }
     
@@ -87,8 +86,8 @@ export default class AbsentRepository extends BaseRepository{
 
             return ResponseRepo.Success(result[0]);
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     

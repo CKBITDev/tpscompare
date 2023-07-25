@@ -14,7 +14,7 @@ export default class HrValidationController{
           let data = await HrValidationRepository.data(req,dataBody);       
           return Response.Success(res,data.data);
         } catch (error) {
-          return Response.Error(req,res,error.message,true);
+          return Response.Error(req,res,error,true);
         }
       
   }
@@ -48,7 +48,7 @@ export default class HrValidationController{
         return Response.SuccessMessage(res,"Transaksi berhasil di Approved");
     
     } catch (error) {
-        return Response.Error(req,res,error.message,true);
+        return Response.Error(req,res,error,true);
     }
   }
 
@@ -84,7 +84,7 @@ export default class HrValidationController{
       return Response.SuccessMessage(res,"Transaksi berhasil di Rejected");
       
     } catch (error) {
-        return Response.Error(req,res,error.message,true);
+        return Response.Error(req,res,error,true);
     }
   }
 

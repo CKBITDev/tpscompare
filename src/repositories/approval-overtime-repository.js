@@ -27,14 +27,11 @@ export default class ApprovalOvertimeRepository extends BaseRepository{
                 });
                 result[index].worktype_desc = worktype_desc.join(" - ");
             }
-            if(result.length == 0){
-                return ResponseRepo.Success(result);
-            }
+            
             return ResponseRepo.Success(result);
                
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            return ResponseRepo.Error(req,error);   
         }
     }
     

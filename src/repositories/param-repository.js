@@ -16,7 +16,7 @@ export default class ParamRepository extends BaseRepository{
             return ResponseRepo.Success(result[0].param_value.toString().split(";"));
               
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
+            
             return ResponseRepo.Error(error);   
         }
     }

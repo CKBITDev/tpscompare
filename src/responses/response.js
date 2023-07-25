@@ -17,11 +17,12 @@ class  Response{
             data:{}
         })
     }
-    static Error(req,res,message,withLog = false){
-        
+    static Error(req,res,error,withLog = false){
+        var message = 'Something wrong on the server';
         if(withLog){
-            LogErrorHelper.set(req,message);
-            message = 'Something wrong on the server';
+            LogErrorHelper.set(req,error);
+        }else{
+            message = error.message;
         }
         return res.send({
             message:message,

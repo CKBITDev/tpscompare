@@ -1,5 +1,6 @@
 require('dotenv').config()
 import { createConnection } from 'mysql';
+import LogErrorHelper from '../helpers/logerror-helper';
 
 export default class Database{
     static async conn(query,dataParam = ''){
@@ -49,22 +50,32 @@ export default class Database{
         if(dataParam){
             return new Promise((resolve, reject) => {
                 connection.query(query,dataParam, function (err, data) {
-                    if (err) reject(err);
+                    
+                    if (err){
+                        reject(err);
+                    } else{
 
-                    var dataRes =JSON.stringify(data);
-                    dataRes = JSON.parse(dataRes);
-                    resolve(dataRes);
+                        var dataRes =JSON.stringify(data);
+                        dataRes = JSON.parse(dataRes);
+                        resolve(dataRes);
+                    }
+
                 });
             }) 
         }else{
 
             return new Promise((resolve, reject) => {
                 connection.query(query, function (err, data) {
-                    if (err) reject(err);
                     
-                    var dataRes =JSON.stringify(data);
-                    dataRes = JSON.parse(dataRes);
-                    resolve(dataRes);
+                    if (err){
+                        reject(err);
+                    } else{
+
+                        var dataRes =JSON.stringify(data);
+                        dataRes = JSON.parse(dataRes);
+                        resolve(dataRes);
+                    }
+                    
                 });
             }) 
         }  

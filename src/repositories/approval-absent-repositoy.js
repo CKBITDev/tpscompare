@@ -15,11 +15,10 @@ export default class ApprovalAbsentRepository extends BaseRepository{
     static async getViewApproval(req,data){
         try {    
             const result = await Database.conn(ApprovalAbsentQuery.getViewApproval(data));
-            
             return ResponseRepo.Success(result);
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
 
@@ -31,8 +30,8 @@ export default class ApprovalAbsentRepository extends BaseRepository{
             }
             return ResponseRepo.Success(result[0]);
         } catch (error) {
-            ErrorHandler.RepoHandler(error);
-            return ResponseRepo.Error("Something wrong in the server");   
+            
+            return ResponseRepo.Error(req,error);   
         }
     }
     
