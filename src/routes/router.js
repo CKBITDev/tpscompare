@@ -97,6 +97,10 @@ router.group("/api/v1/mobile", (router) => {
        
     router.post('/login', AuthController.login) 
 });
+
+router.get('/', async (req,res)=> {
+    return res.send("wellcome to api hris :)")
+}) 
 // router.group([middlewareAuth.isAuthorized]
 let listRoutes = router.init();
 module.exports = listRoutes;
