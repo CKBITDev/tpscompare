@@ -1,6 +1,7 @@
 
 import jwt from 'jsonwebtoken'
-const jwtSecret = process.env.TOKEN;
+import {TOKEN} from "@env"
+const jwtSecret = TOKEN;
 import Response from '../responses/response';
 
 export default class MiddlewareAuth{

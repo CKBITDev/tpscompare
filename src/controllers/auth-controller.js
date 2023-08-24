@@ -2,6 +2,7 @@
 import AuthRepository from '../repositories/auth-repository'
 import Response from '../responses/response';
 import jwt from 'jsonwebtoken'
+import {TOKEN,SESSION_TIMEOUT} from "@env"
 
 export default class AuthController{
     static async login(req,res){
@@ -25,8 +26,8 @@ export default class AuthController{
               // var dataString =JSON.stringify(data);
               // var dataUser =  JSON.parse(dataString);
               //======= create jwt token
-              const jwtSecret = process.env.TOKEN;
-              const maxAge = process.env.SESSION_TIMEOUT * 60 * 60;
+              const jwtSecret = TOKEN;
+              const maxAge = SESSION_TIMEOUT * 60 * 60;
               const token = jwt.sign(data,jwtSecret,
                   {expiresIn: maxAge}
               );

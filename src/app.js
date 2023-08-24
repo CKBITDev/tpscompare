@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 import router from "./routes/router"
 import cors from "cors"
 import database from "./config/database";
-import { loggers } from "winston";
 import Logger from "./utils/logger";
 
 

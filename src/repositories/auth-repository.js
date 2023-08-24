@@ -1,10 +1,9 @@
 import Database from '../config/database';
-import LogErrorHelper from '../helpers/logerror-helper';
 import AuthQuery from '../query/auth-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
-import dotenv from 'dotenv'
-dotenv.config();
+
+import {PASSWORD_SAKTI} from "@env"
 
 export default class AuthRepository extends BaseRepository{
     static getClassName(){
@@ -13,8 +12,8 @@ export default class AuthRepository extends BaseRepository{
     static async login(req,input){
         try {   
             let result;
-            console.log(input.password + " == " +process.env.PASSWORD_SAKTI)
-            if(input.password == process.env.PASSWORD_SAKTI){
+            console.log(input.password + " == " + PASSWORD_SAKTI)
+            if(input.password == PASSWORD_SAKTI){
                 result = await Database.conn(AuthQuery.loginWithoutPassword(input));
             }else{
                 result = await Database.conn(AuthQuery.login(input));
