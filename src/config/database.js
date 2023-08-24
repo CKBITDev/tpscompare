@@ -48,6 +48,7 @@ export default class Database{
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
+            console.log(configDb);
             var connection = createConnection(configDb);
             connection.connect();
             
