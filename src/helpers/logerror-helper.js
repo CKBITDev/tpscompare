@@ -2,10 +2,10 @@ import Database from "../config/database";
 import DateHelper from "./date-helper";
 
 export default class LogErrorHelper {
-    static async set(req,error){
+    static async set(req,message){
         let data = {
             created_at:DateHelper.dateTimeNow(),
-            message:error.message,
+            message:message,
             endpoint:req.originalUrl,
             created_by:''
         }

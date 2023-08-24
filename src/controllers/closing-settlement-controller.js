@@ -13,7 +13,7 @@ export default class ClosingSettlementController{
           let data = await ClosingSettlementRepository.data(req,dataBody);       
           return Response.Success(res,data.data);
         } catch (error) {
-          return Response.Error(req,res,error,true);
+          return Response.Error(req,res,error.message,true);
         }
       
   }
@@ -49,7 +49,7 @@ export default class ClosingSettlementController{
       return Response.SuccessMessage(res,`Transaksi berhasil di Rejected`);
        
     } catch (error) {
-      return Response.Error(req,res,error,true);
+      return Response.Error(req,res,error.message,true);
     }
   }
 
@@ -105,7 +105,7 @@ export default class ClosingSettlementController{
           }       
           return Response.Success(res,resObj);
         } catch (error) {
-          return Response.Error(req,res,error,true);
+          return Response.Error(req,res,error.message,true);
         }
       
   }
@@ -195,7 +195,7 @@ export default class ClosingSettlementController{
 
     
     } catch (error) {
-      return Response.Error(req,res,error,true);
+      return Response.Error(req,res,error.message,true);
     }
   }
 

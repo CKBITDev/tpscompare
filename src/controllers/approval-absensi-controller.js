@@ -23,7 +23,7 @@ export default class ApprovalAbsensiController{
             const data = await ApprovalAbsentRepository.getViewApproval(req,dataParam);
             return Response.Success(res,data.data);
         } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
         }
     }    
     static async rejectDataLate(req,res){
@@ -49,7 +49,7 @@ export default class ApprovalAbsensiController{
                 return Response.Error(req,res,"Data gagal di reject");
             }
         } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
         }
     }
         
@@ -87,7 +87,7 @@ export default class ApprovalAbsensiController{
                 return Response.Error(req,res,"Data gagal di approve");
             }
         } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
         }
     }
 
@@ -114,7 +114,7 @@ export default class ApprovalAbsensiController{
                 return Response.Error(req,res,"Data gagal di reject");
             }
         } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
         }
     }
     static async approveDataOutside(req,res){
@@ -139,7 +139,7 @@ export default class ApprovalAbsensiController{
                 return Response.Error(req,res,"Data gagal di approve");
             }
         } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
         }
     }
 }

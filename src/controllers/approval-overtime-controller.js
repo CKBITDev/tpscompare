@@ -12,7 +12,7 @@ export default class ApprovalOvertimeController{
             let data = await ApprovalOvertimeRepository.data(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }
@@ -49,7 +49,7 @@ export default class ApprovalOvertimeController{
           return Response.SuccessMessage(res,"Data berhasil di Approve");
         
     } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
     }
     }
 
@@ -89,7 +89,7 @@ export default class ApprovalOvertimeController{
             return Response.Error(req,res,"Data gagal di Reject");
         }
     } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
     }
     }
 

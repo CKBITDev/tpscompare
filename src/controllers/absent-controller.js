@@ -132,7 +132,7 @@ export default class AbsentController{
 
             return Response.SuccessMessage(res,`Anda Berhasil Clock In Pukul ${timeAbsenServer} ${zonaAbsenServer}, Terimakasih`);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }
@@ -216,7 +216,7 @@ export default class AbsentController{
 
             return Response.SuccessMessage(res,`Anda Berhasil Clock Out Pukul ${timeAbsenServer} ${zonaAbsenServer}, Terimakasih`);
           } catch (error) {
-              return Response.Error(req,res,error,true);
+              return Response.Error(req,res,error.message,true);
           }
         
     }

@@ -11,7 +11,7 @@ export default class ClosingApprovalController{
             let data = await ClosingApprovalRepository.data(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
     static async getCostStatus(req,res){
@@ -19,7 +19,7 @@ export default class ClosingApprovalController{
         let data = await ClosingApprovalRepository.costStatus(req);       
         return Response.Success(res,data.data);
       } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
       }
     }
     static async approve(req,res){
@@ -106,7 +106,7 @@ export default class ClosingApprovalController{
   
       
       } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
       }
     }
     static async approveMultiple(req,res){
@@ -140,7 +140,7 @@ export default class ClosingApprovalController{
           return Response.SuccessMessage(res,"Transaksi berhasil di Approved, data Over Time sudah terkirim ke department HRD untuk di validasi Terimkasih");
       
       } catch (error) {
-          return Response.Error(req,res,error,true);
+          return Response.Error(req,res,error.message,true);
       }
     }
 
@@ -176,7 +176,7 @@ export default class ClosingApprovalController{
         return Response.SuccessMessage(res,"Transaksi berhasil di reject");
         
       } catch (error) {
-          return Response.Error(req,res,error,true);
+          return Response.Error(req,res,error.message,true);
       }
     }
 

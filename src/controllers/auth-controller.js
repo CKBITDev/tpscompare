@@ -13,7 +13,6 @@ export default class AuthController{
         }
         try {
             const auth = await AuthRepository.login(req,dataBody);
-
             if (auth.data.length == 0) {
               return Response.Error(req,res,"Username and password wrong")
             } else {
@@ -37,7 +36,7 @@ export default class AuthController{
         
             }
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }

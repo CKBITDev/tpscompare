@@ -17,13 +17,13 @@ export default class OvertimeController{
                 if(levels.includes(data.id_div)){
                     return Response.SuccessMessage(res,"");
                 }else{
-                    return Response.Error(req,res,{message:`Divisi anda adalah "${data.division}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`});
+                    return Response.Error(req,res,`Divisi anda adalah "${data.division}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`);
                 }
             }else{
-                return Response.Error(req,res,{message:`Divisi anda adalah "${req.auth.divisi}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`});
+                return Response.Error(req,res,`Divisi anda adalah "${req.auth.divisi}",Maaf menu ini hanya bisa diakses oleh Divisi (Human Capital,Asset Management,OHC Support , HR Support Service & HR & GA Business Partner), Terimkasih`);
             }
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }
@@ -33,7 +33,7 @@ export default class OvertimeController{
             let data = await OvertimeRepository.dataOvertime(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }
@@ -45,7 +45,7 @@ export default class OvertimeController{
             var data = await OvertimeRepository.dataApprovalFlow(req,dataBody);     
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
 
@@ -54,7 +54,7 @@ export default class OvertimeController{
             var data = await OvertimeRepository.dataWorktype(req);     
             return Response.Success(res,data.data);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
 
@@ -96,7 +96,7 @@ export default class OvertimeController{
             return Response.SuccessMessage(res,`Transaksi berhasil di delete`);
          
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
 
@@ -164,7 +164,7 @@ export default class OvertimeController{
             return Response.SuccessMessage(res,`Transaksi berhasil di simpan, data Over Time anda mengunggu approval atasan anda yaitu  ${namaAtasan}`);
          
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
 
@@ -239,7 +239,7 @@ export default class OvertimeController{
             
             return Response.SuccessMessage(res,`Transaksi berhasil di simpan, data Over Time anda mengunggu approval atasan anda yaitu ${namaAtasan}`);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
     }
     

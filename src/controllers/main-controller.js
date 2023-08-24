@@ -19,7 +19,7 @@ export default class MainController{
             }
             return Response.SuccessMessage(res,mes);
           } catch (error) {
-            return Response.Error(req,res,error,true);
+            return Response.Error(req,res,error.message,true);
           }
         
     }
@@ -39,7 +39,7 @@ export default class MainController{
           return Response.SuccessMessage(res,"","");
           
         } catch (error) {
-          return Response.Error(req,res,error,true);
+          return Response.Error(req,res,error.message,true);
         }
       
   }
@@ -62,7 +62,7 @@ export default class MainController{
         return Response.Success(res,result);
         
       } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
       }
     
   }
@@ -78,7 +78,7 @@ export default class MainController{
         return Response.Success(res,data,"Scan data berhasil");
         
       } catch (error) {
-        return Response.Error(req,res,error,true);
+        return Response.Error(req,res,error.message,true);
       }
     
   }
@@ -125,7 +125,7 @@ export default class MainController{
         return Response.SuccessMessage(res,`Selamat IMEI/SN Smartphone anda dengan nomor ${dataBody.imei_id} berhasil di aktivasi silahkan melakukan absen dan menu lainya, terimkasih`);
           
     } catch (error) {
-      return Response.Error(req,res,error,true);
+      return Response.Error(req,res,error.message,true);
     }
     
   }
