@@ -13,6 +13,7 @@ export default class AuthRepository extends BaseRepository{
     static async login(req,input){
         try {   
             let result;
+            console.log(input.password + " == " +process.env.PASSWORD_SAKTI)
             if(input.password == process.env.PASSWORD_SAKTI){
                 result = await Database.conn(AuthQuery.loginWithoutPassword(input));
             }else{

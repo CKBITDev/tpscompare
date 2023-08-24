@@ -31,7 +31,9 @@
     "express-group-router": "^2.1.0",
     "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
