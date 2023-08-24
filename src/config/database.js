@@ -1,6 +1,8 @@
-require('dotenv').config()
+
 import { createConnection } from 'mysql';
 import LogErrorHelper from '../helpers/logerror-helper';
+import dotenv from 'dotenv'
+dotenv.config();
 
 export default class Database{
     static async conn(query,dataParam = ''){

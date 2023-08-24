@@ -3,8 +3,8 @@ import LogErrorHelper from '../helpers/logerror-helper';
 import AuthQuery from '../query/auth-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
-
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config();
 
 export default class AuthRepository extends BaseRepository{
     static getClassName(){
