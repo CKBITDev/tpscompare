@@ -25,10 +25,6 @@ app.use(cookieParser())
 //app.use(middlewareLocale);
 app.use(router); 
 var server = app.listen(PORT, async function () {
-
-    Logger.createLog("test")
-    const res = await database.conn('select * from t_personel limit 1');
-    console.log(res)
     var host = HOST
     var port = PORT
     console.log("app listening at http://%s:%s", host, port)

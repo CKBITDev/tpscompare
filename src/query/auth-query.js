@@ -4,7 +4,7 @@ export default class AuthQuery{
                         LEFT JOIN employee.t_personel b on a.employee_id = b.employee_id
                         WHERE b.employment_status_id in ('PER','CON','OUT')
                             AND a.user_id ='${data.username}' 
-                            AND a.password = '${data.password}'`;
+                            AND a.password = md5('${data.password}')`;
         return query;
     }
     static loginWithoutPassword(data){
