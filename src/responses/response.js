@@ -19,8 +19,8 @@ class  Response{
     }
     static Error(req,res,message,withLog = false){
         if(withLog){
-            message = 'Something wrong on the server';
             LogErrorHelper.set(req,message);
+            message = 'Something wrong on the server';
         }
         return res.send({
             message:message,

@@ -17,8 +17,7 @@ export default class AuthController{
             if (auth.data.length == 0) {
               return Response.Error(req,res,"Username and password wrong")
             } else {
-
-              const response = await AuthRepository.userDetail(req,dataBody);
+              const response = await AuthRepository.userDetail(req,auth.data[0]);
               if(!response.success){
                 return Response.Error(req,res,response.message)
               }
