@@ -155,7 +155,6 @@ export default class AbsentController{
             let curr_location  = dataBody.curr_location;
             let description    = dataBody.description;
             let remark    = dataBody.remark;
-            
             if(!long_lat){
                 return Response.Error(req,res,` Clock out gagal di proses karena GPS/Lokasi di smartphone anda belum aktif, silahkan aktifkan GPS/Lokasi anda`);
             }
@@ -172,16 +171,20 @@ export default class AbsentController{
             let absent = await AbsentRepository.getAbsentData(req,dataBody);
             
             const empApproval = personel.data.to_userid;
-            const dateJamAbsent = dateAbsenServer + ' ' + timeAbsenServer;
-            const dateJamSelesaiKerja = dateAbsenServer+' '+ dataBody.start_time; 
+            timeAbsenServer = "19:31";
+            const endTime = absent.data.EndTime;
+            
+            const dateJamAbsent = dateAbsenServer + ' ' + DateHelper.timeFormat(timeAbsenServer);
+            const dateJamSelesaiKerja = dateAbsenServer+' '+ endTime; 
 
+            console.log(dateJamAbsent + "<"  + dateJamSelesaiKerja)
             if(!absent){
                 return Response.Error(req,res,`Transaksi gagal di proses, Hari ini anda belum melakukan Clock In, silahkan mengisi Justification dimenu kalender untuk memporses absen Clock In anda`);               
             }else if(absent.data.DateAbsentOut){
                 return Response.Error(req,res,`Clock Out gagal di proses, Hari ini anda sudah Clock Out jam ${absent.data.TimeAbsentOut} ${zonaAbsenServer}`);               
             }else if(dateJamAbsent < dateJamSelesaiKerja){
                 if(remark == ""){
-                    return Response.Error(req,res,`Anda Clock Out lebih awal, tipe jam kerja anda adalah ${absent.data.TypeShft},anda absen pukul ${timeAbsenServer} ${zonaAbsenServer} dan jam pulang anda pukul ${absent.data.EndTime} ${zonaAbsenServer} silahkan isikan alasan pulang cepat untuk minta approval atasan anda`);
+                    return Response.Error(req,res,`Anda Clock Out lebih awal, tipe jam kerja anda adalah ${absent.data.TypeShft},anda check out pukul ${timeAbsenServer} ${zonaAbsenServer} dan jam pulang anda pukul ${absent.data.EndTime} ${zonaAbsenServer} silahkan isikan alasan pulang cepat untuk minta approval atasan anda`);
                 }else{
                     let dataCheckout = {
                         DateAbsentOut: dateJamAbsent,
