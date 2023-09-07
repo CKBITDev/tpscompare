@@ -171,13 +171,11 @@ export default class AbsentController{
             let absent = await AbsentRepository.getAbsentData(req,dataBody);
             
             const empApproval = personel.data.to_userid;
-            timeAbsenServer = "19:31";
             const endTime = absent.data.EndTime;
             
             const dateJamAbsent = dateAbsenServer + ' ' + DateHelper.timeFormat(timeAbsenServer);
             const dateJamSelesaiKerja = dateAbsenServer+' '+ endTime; 
 
-            console.log(dateJamAbsent + "<"  + dateJamSelesaiKerja)
             if(!absent){
                 return Response.Error(req,res,`Transaksi gagal di proses, Hari ini anda belum melakukan Clock In, silahkan mengisi Justification dimenu kalender untuk memporses absen Clock In anda`);               
             }else if(absent.data.DateAbsentOut){
