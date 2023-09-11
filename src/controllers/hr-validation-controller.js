@@ -11,6 +11,7 @@ export default class HrValidationController{
             dataBody.offset = 0;
           }
           dataBody.employee_id = req.auth.employee_id;
+          dataBody.user_id = req.auth.user_id;
           let data = await HrValidationRepository.data(req,dataBody);       
           return Response.Success(res,data.data);
         } catch (error) {

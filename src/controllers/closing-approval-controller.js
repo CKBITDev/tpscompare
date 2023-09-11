@@ -7,7 +7,7 @@ export default class ClosingApprovalController{
     static async list(req,res){
         try {
             let dataBody = req.body;
-            dataBody.employee_id = req.auth.employee_id;
+            dataBody.user_id = req.auth.user_id;
             let data = await ClosingApprovalRepository.data(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
@@ -25,7 +25,8 @@ export default class ClosingApprovalController{
     static async approve(req,res){
       try {
         let dataBody = req.body;
-        dataBody.employee_id = req.auth.employee_id;
+        
+        dataBody.user_id = req.auth.user_id;
         dataBody.id_over_time = dataBody.id_overtime;
   
         var dataOt = await OvertimeRepository.dataOvertimeById(req,dataBody);

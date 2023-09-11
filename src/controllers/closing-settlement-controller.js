@@ -9,7 +9,7 @@ export default class ClosingSettlementController{
   static async list(req,res){
       try {
           let dataBody = req.body;
-          dataBody.employee_id = req.auth.employee_id;
+          dataBody.user_id = req.auth.user_id;
           let data = await ClosingSettlementRepository.data(req,dataBody);       
           return Response.Success(res,data.data);
         } catch (error) {
@@ -112,7 +112,7 @@ export default class ClosingSettlementController{
   static async updateClosing(req,res){
     try {
       let dataBody = req.body;
-      dataBody.employee_id = req.auth.employee_id;
+      dataBody.user_id = req.auth.user_id;
       if(dataBody.rdOptionApproval == "" || dataBody.rdOptionApproval == null){
         return Response.Error(req,res,`Silahkan pilih nama approval terlebih dahulu!!`); 
       }

@@ -46,7 +46,7 @@ export default class OvertimeStatusQuery{
                     LEFT JOIN employee.t_personel d on d.job_title_detail_id=b.req_to_jobtitleid
                     WHERE b.ttovertime_pk != '' AND b.is_deleted != 1
                     ${data.employeeLike}
-                    AND b.created_by =  '${data.employee_id}' 
+                    AND b.created_by =  '${data.user_id}' 
                    
                     order by b.created_datetime DESC
                     LIMIT 10 OFFSET ${data.offset}`;

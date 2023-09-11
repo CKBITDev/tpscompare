@@ -35,7 +35,7 @@ export default class OvertimeQuery{
                     LEFT JOIN employee.ot_overtime b on a.user_id=b.created_by
                     LEFT JOIN employee.t_personel d on d.job_title_detail_id=b.req_to_jobtitleid
                     WHERE b.ttovertime_pk != '' AND b.is_deleted != 1
-                    AND a.user_id =  '${data.employee_id}' 
+                    AND a.user_id =  '${data.user_id}' 
                     AND (b.appv_spr = 0)
                     and b.appv_hr=1
                     and b.settl_appv_spr=0
@@ -82,7 +82,7 @@ export default class OvertimeQuery{
                     LEFT JOIN employee.t_personel d on d.job_title_detail_id=b.req_to_jobtitleid
                     WHERE b.ttovertime_pk != '' AND b.is_deleted != 1
                     ${data.employeeLike}
-                    AND b.req_spr_uid =  '${data.employee_id}' 
+                    AND b.req_spr_uid =  '${data.user_id}' 
                     AND (b.appv_spr = 0)
                     and b.appv_hr=1
                     and b.settl_appv_spr=0
@@ -93,7 +93,7 @@ export default class OvertimeQuery{
     }
 
     static dataOvertimeByDate(data){
-        const query =  `SELECT * from employee.ot_overtime WHERE over_date ='${data.over_date}' and user_req_uid = '${data.employee_id}' and is_deleted = 0 `;
+        const query =  `SELECT * from employee.ot_overtime WHERE over_date ='${data.over_date}' and user_req_uid = '${data.user_id}' and is_deleted = 0 `;
         return query;
     }
 
@@ -183,7 +183,7 @@ export default class OvertimeQuery{
     LEFT JOIN master_param.t_station ON employee.t_personel.station_id = master_param.t_station.station_id 
     LEFT JOIN employee.t_kecamatan ON t_kecamatan.kecamatan_id=t_personel.current_kecamatan_id 
     LEFT JOIN user_access.t_user ON t_user.employee_id = t_personel.employee_id  
-    WHERE user_access.t_user.user_id = '${data.employee_id}'`;
+    WHERE user_access.t_user.user_id = '${data.user_id}'`;
     return query;
     }
 
