@@ -43,7 +43,7 @@ export default class ClosingApprovalQuery{
                     LEFT JOIN employee.t_personel d on d.job_title_detail_id=b.req_to_jobtitleid
                     WHERE b.ttovertime_pk != '' AND b.is_deleted != 1
                     ${data.employeeLike}
-                    AND a.user_id =  '${data.employee_id}' 
+                    AND a.user_id =  '${data.user_id}' 
                     and b.appv_spr=1
                     and b.appv_hr=1
                     and b.settl_appv_spr=0

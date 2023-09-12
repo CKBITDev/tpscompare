@@ -9,7 +9,7 @@ export default class OvertimeStatusController{
             if(!req.body.offset){
               dataBody.offset = 0;
             }
-            dataBody.employee_id = req.auth.employee_id;
+            dataBody.user_id = req.auth.user_id;
             let data = await OvertimeStatusRepository.dataOvertime(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {

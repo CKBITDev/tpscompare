@@ -8,7 +8,7 @@ export default class ApprovalOvertimeController{
     static async list(req,res){
         try {
             let dataBody = req.body;
-            dataBody.employee_id = req.auth.employee_id;
+            dataBody.user_id = req.auth.user_id;
             let data = await ApprovalOvertimeRepository.data(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {

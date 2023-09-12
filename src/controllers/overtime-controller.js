@@ -8,7 +8,7 @@ export default class OvertimeController{
     static async hrValidation(req,res){
         try {
 
-            let dataBody = {employee_id:req.auth.employee_id};
+            let dataBody = {user_id:req.auth.user_id};
             
             var data = await OvertimeRepository.dataHrDivision(req,dataBody);      
             if(data){
@@ -104,7 +104,7 @@ export default class OvertimeController{
         try {
 
             let dataBody = req.body;
-            dataBody.employee_id = req.auth.employee_id;
+            dataBody.user_id = req.auth.user_id;
             //var validateOt = await OvertimeRepository.dataOvertimeByDate(req,dataBody);   
             
             if(dataBody.rdOptionApproval == "" || dataBody.rdOptionApproval == null){
@@ -172,7 +172,7 @@ export default class OvertimeController{
         try {
 
             let dataBody = req.body;
-            dataBody.employee_id = req.auth.employee_id;
+            dataBody.user_id = req.auth.user_id;
             var validateOt = await OvertimeRepository.dataOvertimeByDate(req,dataBody);   
             if(validateOt){
                 return Response.Error(req,res,`Overtime anda untuk tanggal "${dataBody.over_date}" sudah terdaftar.`);

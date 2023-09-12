@@ -37,7 +37,7 @@ export default class ApprovalOvertimeQuery{
                     LEFT JOIN employee.t_personel d on d.job_title_detail_id=b.req_to_jobtitleid
                     WHERE b.ttovertime_pk != '' AND b.is_deleted != 1
                     ${data.employeeLike}
-                    AND b.req_spr_uid =  '${data.employee_id}' 
+                    AND b.req_spr_uid =  '${data.user_id}' 
                     AND (b.appv_spr = 0)
                     and b.appv_hr=1
                     and b.settl_appv_spr=0
