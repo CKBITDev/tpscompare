@@ -170,8 +170,6 @@ export default class AbsentController{
             dataBody.date_absen = current_date;
             let absent = await AbsentRepository.getAbsentData(req,dataBody);
             
-            const empApproval = personel.data.to_userid;
-            
             
             const dateJamAbsent = dateAbsenServer + ' ' + DateHelper.timeFormat(timeAbsenServer);
             let dateJamSelesaiKerja = '';
@@ -196,7 +194,6 @@ export default class AbsentController{
                         DesctriptionOut:description,
                         StatusData:2,
                         ApprovalStatus:0,
-                        ApporvalBy:empApproval,
                         justificationRemarks:absent.justificationRemarks + '|' + remark,
                         justificationDate:DateHelper.dateTimeNow()
                     }
