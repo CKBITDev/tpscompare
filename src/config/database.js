@@ -51,15 +51,10 @@ export default class Database{
                 user: username,
                 password: password,
                 database: databaseName,
-                options: {
-                    encrypt: false,
-                    trustServerCertificate: false
-                    
-                },
+                connectionLimit:0,
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
-            console.log(configDb);
             var connection = createConnection(configDb);
             connection.connect();
             
