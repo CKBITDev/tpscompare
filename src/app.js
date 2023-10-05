@@ -24,8 +24,4 @@ app.use(express.static(__dirname + '/public'));
 app.use(cookieParser())
 //app.use(middlewareLocale);
 app.use(router); 
-var server = app.listen(PORT, async function () {
-    var host = HOST
-    var port = PORT
-    console.log("app listening at http://%s:%s", host, port)
-})
+app.listen(PORT)

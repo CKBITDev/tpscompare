@@ -1,7 +1,9 @@
 module.exports = {
   apps : [{
-    script    : "src/app.js",
+    name : "hris_api",
+    script    : "build/app.js",
     instances : "2",
-    exec_mode : "cluster"
+    exec_mode : "cluster",
+    increment_var : 'PORT',
   }]
 }
