@@ -3,10 +3,15 @@ import DateHelper from "./date-helper";
 
 export default class LogErrorHelper {
     static async set(req,message){
+        let dataBody = "";
+        if(req.body){
+            dataBody = JSON.stringify(req.body);
+        }
         let data = {
             created_at:DateHelper.dateTimeNow(),
             message:message,
             endpoint:req.originalUrl,
+            post_data:dataBody,
             created_by:''
         }
         if(req.auth){
