@@ -29,7 +29,7 @@ export default class OvertimeController{
     }
     static async list(req,res){
         try {
-            let dataBody = {employee_id:req.auth.employee_id};
+            let dataBody = {employee_id:req.auth.employee_id,user_id:req.auth.user_id};
             let data = await OvertimeRepository.dataOvertime(req,dataBody);       
             return Response.Success(res,data.data);
           } catch (error) {
