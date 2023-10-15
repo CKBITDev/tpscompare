@@ -10,6 +10,7 @@ export default class ClosingSettlementController{
       try {
           let dataBody = req.body;
           dataBody.user_id = req.auth.user_id;
+		  dataBody.date_now = DateHelper.dateNow();
           let data = await ClosingSettlementRepository.data(req,dataBody);       
           return Response.Success(res,data.data);
         } catch (error) {
@@ -140,8 +141,8 @@ export default class ClosingSettlementController{
       //const total_jam_shft_diff = Math.abs(total_jam_shift / (1000 * 60 * 60));
 
 
-      let settlShifttimestart = DateHelper.dateTimeNow() + " " + dataBody.TimeStart;
-      let settlShifttimeend = DateHelper.dateTimeNow() + " " + dataBody.TimeEnd;
+      let settlShifttimestart = DateHelper.dateNow() + " " + dataBody.TimeStart;
+      let settlShifttimeend = DateHelper.dateNow() + " " + dataBody.TimeEnd;
 
       if(dataBody.TimeStart > dataBody.TimeEnd){
         let dateSettEnd = DateHelper.increaseDayDate(DateHelper.dateNow(),1); 

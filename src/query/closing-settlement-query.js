@@ -51,6 +51,7 @@ export default class ClosingApprovalQuery{
                     and b.settl_start_time is null
                     and b.appv_spr_uid != ''
                     and b.appv_spr_name != ''
+					and b.over_date < '${data.date_now}'
                     and b.flag_rejected_appv2 is null or b.flag_rejected_appv2 = 0
                     order by b.created_datetime DESC`;
         return query;
