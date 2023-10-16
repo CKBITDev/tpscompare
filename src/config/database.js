@@ -67,7 +67,7 @@ export default class Database{
                             console.error('Error closing MySQL connection:', error);
                             return;
                             }
-                            console.log('MySQL connection closed.');
+                            //console.log('MySQL connection closed.');
                         });
                         if (err){
                             reject(err);
@@ -89,7 +89,7 @@ export default class Database{
                             console.error('Error closing MySQL connection:', error);
                             return;
                             }
-                            console.log('MySQL connection closed.');
+                            //console.log('MySQL connection closed.');
                         });
                         if (err){
                             reject(err);
