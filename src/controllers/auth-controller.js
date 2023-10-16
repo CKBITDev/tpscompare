@@ -14,6 +14,7 @@ export default class AuthController{
         }
         try {
             const auth = await AuthRepository.login(req,dataBody);
+            
             if (auth.data.length == 0) {
               return Response.Error(req,res,"Username and password wrong")
             } else {
@@ -21,9 +22,9 @@ export default class AuthController{
               if(!response.success){
                 return Response.Error(req,res,response.message)
               }
-              const data = response.data;
-              // var dataString =JSON.stringify(data);
-              // var dataUser =  JSON.parse(dataString);
+              const data = response.data[0];
+              //return data;
+              
               //======= create jwt token
               const jwtSecret = TOKEN;
               const token = jwt.sign(data,jwtSecret,

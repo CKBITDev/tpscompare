@@ -1,4 +1,4 @@
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import ErrorHandler from '../helpers/error-handler';
 import AbsentQuery from '../query/absent-query';
 import ResponseRepo from '../responses/repo-response';
@@ -11,7 +11,7 @@ export default class AbsentRepository extends BaseRepository{
     }
     static async insert(req,data){
         try {    
-            const result = await Database.conn(AbsentQuery.insert(),data);
+            const result = await executeQuery(AbsentQuery.insert(),data);
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -25,7 +25,7 @@ export default class AbsentRepository extends BaseRepository{
     static async checkOut(req,data,condition){
         try {    
             const query = AbsentQuery.checkOut(condition);
-            const result = await Database.conn(query,data);
+            const result = await executeQuery(query,data);
             
             if(result.length == 0){
                 return ResponseRepo.Success(result);
@@ -40,7 +40,7 @@ export default class AbsentRepository extends BaseRepository{
     static async update(req,data,condition){
         try {    
             const query = AbsentQuery.update(condition);
-            const result = await Database.conn(query,data);
+            const result = await executeQuery(query,data);
             return ResponseRepo.Success(result);
                
         } catch (error) {
@@ -50,7 +50,7 @@ export default class AbsentRepository extends BaseRepository{
     }
     static async getLocationQr(req,input){
         try {    
-            const result = await Database.conn(AbsentQuery.qrData(input));
+            const result = await executeQuery(AbsentQuery.qrData(input));
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -64,7 +64,7 @@ export default class AbsentRepository extends BaseRepository{
 
     static async getPersonelData(req,data){
         try {    
-            const result = await Database.conn(AbsentQuery.getPersonelData(data));
+            const result = await executeQuery(AbsentQuery.getPersonelData(data));
             
             if(result.length == 0){
                 return ResponseRepo.Success(result);
@@ -78,7 +78,7 @@ export default class AbsentRepository extends BaseRepository{
 
     static async getAbsentData(req,data){
         try {    
-            const result = await Database.conn(AbsentQuery.getDataAbsent(data));
+            const result = await executeQuery(AbsentQuery.getDataAbsent(data));
             
             if(result.length == 0){
                 return false;

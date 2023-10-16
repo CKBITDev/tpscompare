@@ -1,5 +1,5 @@
 
-import { createConnection } from 'mysql';
+import { createPool } from 'mysql';
 import {NODE_ENV,
 DB_NAME,
 DB_USER,
@@ -15,10 +15,9 @@ DB_PASSWORD_TESTING,
 DB_HOST_TESTING} from "@env"
 import Logger from '../utils/logger';
 
-
-export default class Database{
-    static async conn(query,dataParam = ''){
-        var databaseName = "";
+let pool;
+export const databaseInit = () => {
+    var databaseName = "";
         var username = "";
         var password = "";
         var host = "";
@@ -55,60 +54,34 @@ export default class Database{
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
-            var connection = createConnection(configDb);
-            connection.connect();
-            
-            if(dataParam){
-                return new Promise((resolve, reject) => {
-                    connection.query(query,dataParam, function (err, data) {
-                        // Close the MySQL connection
-                        connection.end((error) => {
-                            if (error) {
-                            console.error('Error closing MySQL connection:', error);
-                            return;
-                            }
-                            //console.log('MySQL connection closed.');
-                        });
-                        if (err){
-                            reject(err);
-                        } else{
-                            var dataRes =JSON.stringify(data);
-                            dataRes = JSON.parse(dataRes);
-                            resolve(dataRes);
-                        }
-    
-                    });
-                }) 
-            }else{
-    
-                return new Promise((resolve, reject) => {
-                    connection.query(query, function (err, data) {
-                        // Close the MySQL connection
-                        connection.end((error) => {
-                            if (error) {
-                            console.error('Error closing MySQL connection:', error);
-                            return;
-                            }
-                            //console.log('MySQL connection closed.');
-                        });
-                        if (err){
-                            reject(err);
-                        } else{
-    
-                            var dataRes =JSON.stringify(data);
-                            dataRes = JSON.parse(dataRes);
-                            resolve(dataRes);
-                        }
-                        
-                    });
-                }) 
-            }  
+            console.log(configDb)
+
+            pool = createPool(configDb);
+
         }catch(error){
             Logger.createLog(error.message)
         }
+        
+};
 
         
 
-            
+export const executeQuery = (query, params = []) => {
+    try {
+        if (!pool) throw new Error('Pool was not created. Ensure pool is created when running the app.');
+        return new Promise((resolve, reject) => {
+            pool.query(query, params, (error, results) => {
+                if (error){ 
+                    reject(error)
+                }else {
+                    var dataString =JSON.stringify(results);
+                    var res =  JSON.parse(dataString);
+                    resolve(res);
+                }
+            });
+        });
+    } catch (error) {
+        console.error('[mysql.connector][execute][Error]: ', error);
+        throw new Error('failed to execute MySQL query');
     }
 }

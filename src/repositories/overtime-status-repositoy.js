@@ -1,5 +1,5 @@
 
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import OvertimeQuery from '../query/overtime-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
@@ -25,11 +25,11 @@ export default class OvertimeStatusRepository extends BaseRepository{
             let paramHoliday = await ParamRepository.paramOvertime("MHO");
            
 
-            var result = await Database.conn(OvertimeStatusQuery.dataOvertime(data));
+            var result = await executeQuery(OvertimeStatusQuery.dataOvertime(data));
 
             for (let index = 0; index < result.length; index++) {
                 const res = result[index];
-                const worktypeData = await Database.conn(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
+                const worktypeData = await executeQuery(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
                 let worktype_desc = [];
                 worktypeData.forEach(workType => {
                     worktype_desc.push(workType.worktype_desc + "\n");

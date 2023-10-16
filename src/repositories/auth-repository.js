@@ -1,4 +1,4 @@
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import AuthQuery from '../query/auth-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
@@ -13,12 +13,10 @@ export default class AuthRepository extends BaseRepository{
         try {   
             let result;
             if(input.password == PASSWORD_SAKTI){
-                result = await Database.conn(AuthQuery.loginWithoutPassword(input));
+                result = await executeQuery(AuthQuery.loginWithoutPassword(input));
             }else{
-                result = await Database.conn(AuthQuery.login(input));
+                result = await executeQuery(AuthQuery.login(input));
             }
-
-            
             return ResponseRepo.Success(result);
                
         } catch (error) {
@@ -27,8 +25,8 @@ export default class AuthRepository extends BaseRepository{
     }
     static async userDetail(req,input){
         try {   
-            const result = await Database.conn(AuthQuery.userDetail(input));
-            return ResponseRepo.Success(result[0]);
+            const result = await executeQuery(AuthQuery.userDetail(input));
+            return ResponseRepo.Success(result);
                
         } catch (error) {
             const req = {auth:{employee_id:input.username}};

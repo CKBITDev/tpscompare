@@ -1,4 +1,4 @@
-import Database from "../config/database";
+import { executeQuery } from "../config/database";
 import DateHelper from "./date-helper";
 
 export default class LogErrorHelper {
@@ -17,7 +17,7 @@ export default class LogErrorHelper {
         if(req.auth){
             data.created_by = req.auth.employee_id;
         }
-        await Database.conn('INSERT INTO log_error SET ?',data);
+        await executeQuery('INSERT INTO log_error SET ?',data);
     }
     static async setDb(error){
         
@@ -27,6 +27,6 @@ export default class LogErrorHelper {
             endpoint:'Database',
             created_by:''
         }
-        await Database.conn('INSERT INTO log_error SET ?',data);
+        await executeQuery('INSERT INTO log_error SET ?',data);
     }
 }

@@ -1,4 +1,4 @@
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import MainQuery from '../query/main-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
@@ -9,7 +9,7 @@ export default class MainRepository extends BaseRepository{
     static async dataAbsent(input){
         try {   
             input.employee_id = input.auth.employee_id; 
-            const result = await Database.conn(MainQuery.dataAbsent(input));
+            const result = await executeQuery(MainQuery.dataAbsent(input));
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -22,7 +22,7 @@ export default class MainRepository extends BaseRepository{
     }
     static async dataDevice(data){
         try {    
-            const result = await Database.conn(MainQuery.getDeviceId(data));
+            const result = await executeQuery(MainQuery.getDeviceId(data));
             if(result.length == 0){
                 return false;
             }
@@ -37,7 +37,7 @@ export default class MainRepository extends BaseRepository{
 
     static async saveDevice(data){
         try {    
-            const result = await Database.conn(MainQuery.saveDevice(),data);
+            const result = await executeQuery(MainQuery.saveDevice(),data);
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -51,7 +51,7 @@ export default class MainRepository extends BaseRepository{
 
     static async dataDeviceEmpId(data){
         try {    
-            const result = await Database.conn(MainQuery.getDeviceIdByEmployeeId(data));
+            const result = await executeQuery(MainQuery.getDeviceIdByEmployeeId(data));
             if(result.length == 0){
                 return false;
             }
@@ -64,7 +64,7 @@ export default class MainRepository extends BaseRepository{
     }
     static async versionApp(input){
         try {    
-            const result = await Database.conn(MainQuery.versionApp(input));
+            const result = await executeQuery(MainQuery.versionApp(input));
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -78,7 +78,7 @@ export default class MainRepository extends BaseRepository{
 
     static async paramReminderAttendance(){
         try {    
-            const result = await Database.conn(MainQuery.paramReminderAttendance());
+            const result = await executeQuery(MainQuery.paramReminderAttendance());
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }
@@ -91,7 +91,7 @@ export default class MainRepository extends BaseRepository{
 
     static async getQrCode(input){
         try {    
-            const result = await Database.conn(MainQuery.dataQrCode(input));
+            const result = await executeQuery(MainQuery.dataQrCode(input));
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }

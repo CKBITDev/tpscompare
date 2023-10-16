@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from "cookie-parser";
 import router from "./routes/router"
 import cors from "cors"
-import database from "./config/database";
+import { databaseInit } from "./config/database";
 import Logger from "./utils/logger";
 
 
@@ -15,7 +15,7 @@ var corsOptions = {
 
 const app = express();
 app.use(cors(corsOptions))
-
+databaseInit();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 // in latest body-parser use like below.

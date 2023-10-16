@@ -11,11 +11,15 @@ import ClosingSettlementController from '../controllers/closing-settlement-contr
 
 import middlewareAuth from '../middlewares/auth';
 import HrValidationController from '../controllers/hr-validation-controller';
+import TestLogin from '../tests/login/test_login';
 const Router = require('express-group-router');
 let router = new Router();
 const isAuthorized = middlewareAuth.isAuthorized;
 
 router.group("/api/v1/mobile", (router) => {
+
+    router.get("/test", TestLogin.testing);
+
     router.group([isAuthorized],(router) => {
         router.post("/cek_status_absent", MainController.statusAbsent);
         router.post("/cek_version_app", MainController.cekVersionApp);

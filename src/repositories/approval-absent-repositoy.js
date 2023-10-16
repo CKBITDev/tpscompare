@@ -1,4 +1,4 @@
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import AbsentQuery from '../query/absent-query';
 import ErrorHandler from '../helpers/error-handler';
 import ApprovalAbsentQuery from '../query/approval-absent-query';
@@ -14,7 +14,7 @@ export default class ApprovalAbsentRepository extends BaseRepository{
 
     static async getViewApproval(req,data){
         try {    
-            const result = await Database.conn(ApprovalAbsentQuery.getViewApproval(data));
+            const result = await executeQuery(ApprovalAbsentQuery.getViewApproval(data));
             return ResponseRepo.Success(result);
         } catch (error) {
             
@@ -24,7 +24,7 @@ export default class ApprovalAbsentRepository extends BaseRepository{
 
     static async getAbsentApprove(req,data){
         try {    
-            const result = await Database.conn(ApprovalAbsentQuery.getAbsentApprove(data));
+            const result = await executeQuery(ApprovalAbsentQuery.getAbsentApprove(data));
             if(result.length == 0){
                 return false;
             }

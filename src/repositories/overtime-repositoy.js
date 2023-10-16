@@ -1,5 +1,5 @@
 
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import OvertimeQuery from '../query/overtime-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
@@ -13,10 +13,10 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataOvertime(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataOvertime(data));
+            var result = await executeQuery(OvertimeQuery.dataOvertime(data));
             for (let index = 0; index < result.length; index++) {
                 const res = result[index];
-                const worktypeData = await Database.conn(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
+                const worktypeData = await executeQuery(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
                 let worktype_desc = [];
                 worktypeData.forEach(workType => {
                     worktype_desc.push(workType.worktype_desc + "\n");
@@ -36,7 +36,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataHrDivision(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.userHrDivision(data));
+            var result = await executeQuery(OvertimeQuery.userHrDivision(data));
             if(result.length == 0){
                 return false;
             }
@@ -50,7 +50,7 @@ export default class OvertimeRepository extends BaseRepository{
 
     static async dataRequestReport(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataRequestReport(data));
+            var result = await executeQuery(OvertimeQuery.dataRequestReport(data));
             if(result.length == 0){
                 return false;
             }
@@ -65,7 +65,7 @@ export default class OvertimeRepository extends BaseRepository{
 
     static async dataHoliday(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataHoliday(data));
+            var result = await executeQuery(OvertimeQuery.dataHoliday(data));
             if(result.length == 0){
                 return false;
             }
@@ -78,7 +78,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataWorktype(req){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataWorktype());
+            var result = await executeQuery(OvertimeQuery.dataWorktype());
             if(result.length == 0){
                 return false;
             }
@@ -90,7 +90,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataApprovalFlow(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataApprovalFlow(data));
+            var result = await executeQuery(OvertimeQuery.dataApprovalFlow(data));
             if(result.length == 0){
                 return false;
             }
@@ -103,7 +103,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataOvertimeByDate(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataOvertimeByDate(data));
+            var result = await executeQuery(OvertimeQuery.dataOvertimeByDate(data));
             if(result.length == 0){
                 return false;
             }
@@ -116,7 +116,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async dataOvertimeById(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.dataOvertimeById(data));
+            var result = await executeQuery(OvertimeQuery.dataOvertimeById(data));
             if(result.length == 0){
                 return false;
             }
@@ -129,7 +129,7 @@ export default class OvertimeRepository extends BaseRepository{
     }
     static async insertOvertime(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.insertOvertime(),data);
+            var result = await executeQuery(OvertimeQuery.insertOvertime(),data);
             if(result.length == 0){
                 return false;
             }
@@ -143,7 +143,7 @@ export default class OvertimeRepository extends BaseRepository{
 
     static async insertOtHistory(req,data){
         try {    
-            var result = await Database.conn(OvertimeQuery.insertOtHistory(),data);
+            var result = await executeQuery(OvertimeQuery.insertOtHistory(),data);
             if(result.length == 0){
                 return false;
             }
@@ -157,7 +157,7 @@ export default class OvertimeRepository extends BaseRepository{
 
     static async updateOvertime(req,data,condition){
         try {    
-            var result = await Database.conn(OvertimeQuery.updateOvertime(condition),data);
+            var result = await executeQuery(OvertimeQuery.updateOvertime(condition),data);
             if(result.length == 0){
                 return false;
             }

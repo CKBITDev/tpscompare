@@ -16,9 +16,9 @@ export default class Geofence {
       
         let data;
         if (qr_location_id) {
-           data = await Database.conn(AbsentQuery.qrData({qr_location_id:qr_location_id}));
+           data = await executeQuery(AbsentQuery.qrData({qr_location_id:qr_location_id}));
         } else {
-           data = await Database.conn(AbsentQuery.qrDataAll());
+           data = await executeQuery(AbsentQuery.qrDataAll());
         }
       
         const location = [parseFloat(lat), parseFloat(long)];

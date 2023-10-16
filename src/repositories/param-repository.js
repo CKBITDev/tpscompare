@@ -1,4 +1,4 @@
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import MainQuery from '../query/main-query';
 import ParamQuery from '../query/param-query';
 import ResponseRepo from '../responses/repo-response';
@@ -9,7 +9,7 @@ import ErrorHandler from '../helpers/error-handler';
 export default class ParamRepository extends BaseRepository{
     static async paramOvertime(paramId){
         try {   
-            const result = await Database.conn(ParamQuery.paramOvertime(paramId));
+            const result = await executeQuery(ParamQuery.paramOvertime(paramId));
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }

@@ -1,5 +1,5 @@
 
-import Database from '../config/database';
+import { executeQuery } from '../config/database';
 import OvertimeQuery from '../query/overtime-query';
 import ResponseRepo from '../responses/repo-response';
 import BaseRepository from './base-repository';
@@ -29,10 +29,10 @@ export default class HrValidationRepository extends BaseRepository{
                 data.employeeLike = ` AND b.user_req_name LIKE '%${data.employee_name}%'`;
             }
             const queryHr = HrValidationQuery.data(data);
-            var result = await Database.conn(queryHr);
+            var result = await executeQuery(queryHr);
             for (let index = 0; index < result.length; index++) {
                 const res = result[index];
-                const worktypeData = await Database.conn(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
+                const worktypeData = await executeQuery(OvertimeQuery.dataWorktypeByCode({worktype_code:res.worktype_code.toString().replaceAll("|",",").slice(0, -1)}),data);
                 let worktype_desc = [];
                 worktypeData.forEach(workType => {
                     worktype_desc.push(workType.worktype_desc + "\n");
@@ -64,7 +64,7 @@ export default class HrValidationRepository extends BaseRepository{
             AND flag_granted='Y'
         `;
 
-        const dataLokasiResult = await Database.conn(dataLokasiQuery);
+        const dataLokasiResult = await executeQuery(dataLokasiQuery);
         
 
         let result = '';
