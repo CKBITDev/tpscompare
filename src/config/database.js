@@ -61,11 +61,17 @@ export default class Database{
             if(dataParam){
                 return new Promise((resolve, reject) => {
                     connection.query(query,dataParam, function (err, data) {
-                        
+                        // Close the MySQL connection
+                        connection.end((error) => {
+                            if (error) {
+                            console.error('Error closing MySQL connection:', error);
+                            return;
+                            }
+                            console.log('MySQL connection closed.');
+                        });
                         if (err){
                             reject(err);
                         } else{
-    
                             var dataRes =JSON.stringify(data);
                             dataRes = JSON.parse(dataRes);
                             resolve(dataRes);
@@ -77,7 +83,14 @@ export default class Database{
     
                 return new Promise((resolve, reject) => {
                     connection.query(query, function (err, data) {
-                        
+                        // Close the MySQL connection
+                        connection.end((error) => {
+                            if (error) {
+                            console.error('Error closing MySQL connection:', error);
+                            return;
+                            }
+                            console.log('MySQL connection closed.');
+                        });
                         if (err){
                             reject(err);
                         } else{
