@@ -50,11 +50,10 @@ export const databaseInit = () => {
                 user: username,
                 password: password,
                 database: databaseName,
-                connectionLimit:0,
+                connectionLimit:10,
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
-            console.log(configDb)
 
             pool = createPool(configDb);
 

@@ -1,4 +1,4 @@
-import Database from "../config/database";
+import  { executeQuery } from "../config/database";
 import AbsentQuery from "../query/absent-query";
 
 export default class Geofence {
