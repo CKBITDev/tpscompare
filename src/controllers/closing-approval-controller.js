@@ -44,8 +44,8 @@ export default class ClosingApprovalController{
         //const total_jam_shft_diff = Math.abs(total_jam_shift / (1000 * 60 * 60));
   
   
-        let settlShifttimestart = DateHelper.dateTimeNow() + " " + dataBody.TimeStart;
-        let settlShifttimeend = DateHelper.dateTimeNow() + " " + dataBody.TimeEnd;
+        let settlShifttimestart = DateHelper.dateNow() + " " + dataBody.TimeStart;
+        let settlShifttimeend = DateHelper.dateNow() + " " + dataBody.TimeEnd;
   
         if(dataBody.TimeStart > dataBody.TimeEnd){
           let dateSettEnd = DateHelper.increaseDayDate(DateHelper.dateNow(),1); 

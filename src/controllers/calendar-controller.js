@@ -100,7 +100,7 @@ export default class CalendarController {
                                 background = '#E0E0E0';
                             }
                         } else {
-                            if (eventResult.justificationRemarks != null && eventResult.justificationRemarks != '') {
+                            if (eventResult.justificationRemarks != null && eventResult.justificationRemarks != '' && eventResult.justificationDate != '' && eventResult.justificationDate != null) {
                                 if (eventResult.ApprovalStatus == 0) {
                                     title = 'WLA';
                                     color = '#a7f997';
