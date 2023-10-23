@@ -23,6 +23,7 @@ export default class AbsentController{
             let outsideActivity = "N";
             dataBody.employee_id = req.auth.employee_id;
             
+            let user_id = req.auth.user_id;
             let employee_id    = req.auth.employee_id;
             let employee_name  = req.auth.fullname;
             let long_lat       = dataBody.long_lat;
@@ -90,7 +91,7 @@ export default class AbsentController{
                         CurrentLocation : curr_location,
                         Desctription : description,
                         CreatedDate : date_created,
-                        CreatedUser : employee_id,
+                        CreatedUser : user_id,
                         StatusData : 1,
                         ApprovalStatus    : 0,
                         ApporvalBy        : empApproval,
@@ -117,7 +118,7 @@ export default class AbsentController{
                     CurrentLocation : curr_location,
                     Desctription : description,
                     CreatedDate : date_created,
-                    CreatedUser : employee_id,
+                    CreatedUser : user_id,
                     StatusData : 1,
                     ApprovalStatus    : 0,
                     ApporvalBy        : empApproval,
