@@ -50,7 +50,7 @@ export const databaseInit = () => {
                 user: username,
                 password: password,
                 database: databaseName,
-                connectionLimit:10,
+                connectionLimit:50,
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
