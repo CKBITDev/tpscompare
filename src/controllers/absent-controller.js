@@ -167,8 +167,6 @@ export default class AbsentController{
             let zonaAbsenServer = timeZone.zonaName;
             let dateAbsenServer = date_absen;
             
-            let personel = await AbsentRepository.getPersonelData(req,dataBody);
-            
             let current_date = AbsentController.cekJamPagi(timeAbsenServer, dateAbsenServer);
             dataBody.date_absen = current_date;
             let absent = await AbsentRepository.getAbsentData(req,dataBody);
