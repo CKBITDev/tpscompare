@@ -21,7 +21,7 @@ export default class AbsentQuery{
         return query;
     }
     static getDataAbsent(data){
-        const query = `SELECT * from employee.at_absent where CreatedUser='${data.employee_id}' AND DateAbsent= '${data.date_absen}'`;
+        const query = `SELECT * from employee.at_absent where CreatedUser='${data.user_id}' AND DateAbsent= '${data.date_absen}'`;
         return query;
     }
     static getPersonelData(data){
@@ -31,7 +31,7 @@ export default class AbsentQuery{
         LEFT JOIN employee.t_job_title_detail c on b.job_title_detail_id = c.job_title_detail_id
         LEFT JOIN employee.t_personel d on d.job_title_detail_id = c.report_to_title_id
         LEFT JOIN user_access.t_user e on e.employee_id = d.employee_id
-        WHERE a.user_id='${data.employee_id}' LIMIT 1 `;
+        WHERE a.user_id='${data.user_id}' LIMIT 1 `;
         return query;
     }
 }

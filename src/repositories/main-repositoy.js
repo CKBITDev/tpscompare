@@ -8,8 +8,10 @@ import ErrorHandler from '../helpers/error-handler';
 export default class MainRepository extends BaseRepository{
     static async dataAbsent(input){
         try {   
-            input.employee_id = input.auth.employee_id; 
+            input.employee_id = input.auth.employee_id;
+            input.user_id = input.auth.user_id;
             const result = await executeQuery(MainQuery.dataAbsent(input));
+
             if(result.length == 0){
                 return ResponseRepo.Success(result);
             }

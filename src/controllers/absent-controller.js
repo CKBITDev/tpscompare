@@ -21,8 +21,7 @@ export default class AbsentController{
 
             let dataBody = req.body;
             let outsideActivity = "N";
-            dataBody.employee_id = req.auth.employee_id;
-            
+
             let user_id = req.auth.user_id;
             let employee_id    = req.auth.employee_id;
             let employee_name  = req.auth.fullname;
@@ -39,6 +38,9 @@ export default class AbsentController{
             let description    = dataBody.description;
             let remark    = dataBody.remark;
             let date_created = DateHelper.dateTimeNow();
+            dataBody.employee_id = employee_id;
+            dataBody.user_id = user_id;
+            
             if(!long_lat){
                 return Response.Error(req,res,` Clock In gagal di proses karena GPS/Lokasi di smartphone anda belum aktif, silahkan aktifkan GPS/Lokasi anda`);
             }
