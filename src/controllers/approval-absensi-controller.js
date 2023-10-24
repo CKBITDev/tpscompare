@@ -10,7 +10,8 @@ export default class ApprovalAbsensiController{
             let dataBody = req.body;
             const today = DateHelper.dateNow();
             const month = DateHelper.increaseMonthDateNow(-1);
-            const employee_id = req.auth.employee_id;
+            const user_id = req.auth.user_id;
+            
             let employee_name = '';
             if(dataBody.employee_name){
                 employee_name = dataBody.employee_name;    
@@ -19,7 +20,7 @@ export default class ApprovalAbsensiController{
             if(employee_name != ""){
                 employee_name_like = `AND EmployeeName LIKE '%${employee_name}%'`
             }
-            var dataParam = {employee_id:employee_id,employee_name_like:employee_name_like,month:month}
+            var dataParam = {user_id:user_id,employee_name_like:employee_name_like,month:month,}
             const data = await ApprovalAbsentRepository.getViewApproval(req,dataParam);
             return Response.Success(res,data.data);
         } catch (error) {
