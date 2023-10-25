@@ -40,7 +40,7 @@ export default class AuthQuery{
                         LEFT JOIN employee.t_department ON employee.t_personel.department_id = employee.t_department.department_id 
                         LEFT JOIN employee.t_division ON employee.t_personel.division_id = employee.t_division.division_id 
                         LEFT JOIN master_param.t_area ON employee.t_personel.area_id = master_param.t_area.area_id 
-                        LEFT JOIN employee.at_absent absent ON employee.t_personel.employee_id = absent.CreatedUser and DateAbsent = now()
+                        LEFT JOIN employee.at_absent absent ON employee.t_personel.employee_id = absent.EmployeeID and DateAbsent = now()
                         LEFT JOIN user_access.t_user ON t_user.employee_id = t_personel.employee_id  
                         WHERE employee.t_personel.employee_id ='${data.employee_id}'`;
         return query;
