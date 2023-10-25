@@ -1,6 +1,6 @@
 export default class MainQuery{
     static dataAbsent(data){
-        const query =  `SELECT * from at_absent where CreatedUser = '${data.employee_id}' and DateAbsent = '${data.date}'`;
+        const query =  `SELECT * from at_absent where EmployeeID = '${data.employee_id}' and DateAbsent = '${data.date}'`;
         return query;
     }
     static versionApp(data){
