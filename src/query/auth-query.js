@@ -24,6 +24,7 @@ export default class AuthQuery{
                                 end as status_absent,
                                  t_user.user_id, 
                                 employee.t_personel.employee_id, 
+                                t_personel.area_id as area_id,
                                 concat_ws(' ',employee.t_personel.first_name,employee.t_personel.middle_name,employee.t_personel.last_name) fullname,  
                                 employee.t_level.description AS level, 
                                 employee.t_department.description AS department,

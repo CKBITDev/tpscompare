@@ -48,6 +48,22 @@ export default class OvertimeRepository extends BaseRepository{
         }
     }
 
+    static async dataAreaByEmployeeId(req,data){
+        try {    
+            var result = await executeQuery(OvertimeQuery.dataAreaByEmployeeId(data));
+            
+            if(result.length == 0){
+                return false;
+            }
+            return ResponseRepo.Success(result[0]);
+               
+        } catch (error) {
+            
+            return ResponseRepo.Error(req,error);   
+        }
+    }
+    
+
     static async dataRequestReport(req,data){
         try {    
             var result = await executeQuery(OvertimeQuery.dataRequestReport(data));

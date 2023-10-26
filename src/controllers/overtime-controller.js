@@ -199,6 +199,16 @@ export default class OvertimeController{
                 fullName = dataRequestReport.full_name;
                 namaAtasan = dataRequestReport.nama_atasan;
             }
+            let area_id = "";
+            if(req.auth.area_id){
+                area_id = req.auth.area_id;
+            }else{
+                const parseData = {employee_id:req.auth.employee_id};
+                const areaData  = await OvertimeRepository.dataAreaByEmployeeId(req,parseData);
+                if(areaData.success){
+                    area_id = areaData.data.area_id;
+                }
+            }
             //dataOvertimeByDate = dataOvertimeByDate
             const guid = FunctionHelper.generateGuid('');
             const dataOt = {
@@ -210,7 +220,7 @@ export default class OvertimeController{
                 user_station:req.auth.station_id,
                 user_company:req.auth.company_id,
                 user_sap:req.auth.sap_id,
-                user_area:req.auth.area_id,
+                user_area:area_id,
                 user_jobtitleid:req.auth.job_title_detail_id,
                 req_to_jobtitleid:dataBody.rdOptionApproval,
 

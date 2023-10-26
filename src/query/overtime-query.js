@@ -91,6 +91,12 @@ export default class OvertimeQuery{
                     order by b.created_datetime DESC`;
         return query;
     }
+    
+
+    static dataAreaByEmployeeId(data){
+        const query =  `SELECT area_id from employee.t_personel WHERE employee_id ='${data.employee_id}'`;
+        return query;
+    }
 
     static dataOvertimeByDate(data){
         const query =  `SELECT * from employee.ot_overtime WHERE over_date ='${data.over_date}' and user_req_uid = '${data.user_id}' and is_deleted = 0 `;
