@@ -45,7 +45,7 @@ export default class DateHelper{
         const hours = String(time.getHours()).padStart(2, '0');
         const minutes = String(time.getMinutes()).padStart(2, '0');
 
-        const formatted_time = `${hours}:${minutes}`;
+        const formatted_time = `${hours}:${minutes}:00`;
         
         return formatted_time;
     }

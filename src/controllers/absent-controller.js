@@ -79,7 +79,7 @@ export default class AbsentController{
 
                 if((timeAbsenServer > startTimeVal) && remark == ""){
                     return Response.Error(req,res,`Anda telat Clock In, tipe jam kerja anda adalah ${type} anda absen pukul ${timeAbsenServer} ${zonaAbsenServer}, dan jam masuk anda pukul ${start_time} ${zonaAbsenServer} silahkan isikan alasan telat anda untuk minta approval atasan anda`);
-                }else{
+                }else if(timeAbsenServer > startTimeVal){
                     let dataCheckin = {
                         EmployeeID    : employee_id,
                         EmployeeName  : employee_name,
@@ -104,6 +104,31 @@ export default class AbsentController{
                         outsideactivity : outsideActivity
                     }
                     await AbsentRepository.insert(req,dataCheckin);
+                }else{
+                    let dataCheckin = {
+                        EmployeeID    : employee_id,
+                        EmployeeName  : employee_name,
+                        LongLat : long_lat,
+                        DateAbsent : dateAbsenServer,
+                        TimeAbsent : timeAbsenServer,
+                        ActivityType : activity_type,
+                        TypeShft : type,
+                        StartTime : start_time,
+                        EndTime : end_time,
+                        CurrentLocation : curr_location,
+                        Desctription : description,
+                        CreatedDate : date_created,
+                        CreatedUser : user_id,
+                        StatusData : 1,
+                        ApprovalStatus    : 0,
+                        ApporvalBy        : empApproval,
+                        TypeHP : 1,
+                        qr_location_id : qr_location_id,
+                        outsideactivity : outsideActivity
+                    }
+
+                    await AbsentRepository.insert(req,dataCheckin);
+
                 }
             }else{
 

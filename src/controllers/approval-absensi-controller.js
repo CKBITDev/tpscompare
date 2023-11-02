@@ -63,17 +63,20 @@ export default class ApprovalAbsensiController{
                 const id_absent = idAbsent[index];   
                 var absent = await ApprovalAbsentRepository.getAbsentApprove(req,{id_absent:id_absent});
                 if(absent){
-
                     absent = absent.data;
                     var data_absent = {
                         ApprovalStatus:1,
                         ApprovalDate:DateHelper.dateTimeNow(),
                     };
-                    if(absent.TimeAbsent){
-                        data_absent.TimeAbsent = absent.TimeAbsent;
+                    if(absent.TimeAbsent > absent.StartTime){
+                        data_absent.TimeAbsent = absent.StartTime + ":00";
                     }
-                    if(absent.TimeAbsentOut){
-                        data_absent.TimeAbsentOut = absent.TimeAbsentOut;
+                    else if(absent.TimeAbsentOut < absent.EndTime){
+                        data_absent.TimeAbsentOut = absent.EndTime + ":00";
+                    }else{
+                        data_absent.TimeAbsent = '08:15:00';
+                        data_absent.TimeAbsentOut = '17:00:00';
+                        
                     }
                     response = await AbsentRepository.update(req,data_absent,{id_absent:idAbsent});   
                 }

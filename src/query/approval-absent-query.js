@@ -15,7 +15,7 @@ export default class ApprovalAbsentQuery{
         end
             as Desctription,
             OutsideActivity
-        from employee.at_absent where ApporvalBy = '${data.user_id}' and ApprovalStatus = 0 AND (justificationRemarks IS NOT NULL or OutsideActivity = 'Y')  and DateAbsent >= '${data.month}' ${data.employee_name_like}  ORDER BY DateAbsent DESC`;
+        from employee.at_absent where ApporvalBy = '${data.user_id}' and ApprovalStatus = 0 AND ((justificationRemarks IS NOT NULL and justificationRemarks != '') or OutsideActivity = 'Y')  and DateAbsent >= '${data.month}' ${data.employee_name_like}  ORDER BY DateAbsent DESC`;
         return query;
     }
     static getAbsentApprove(data){
