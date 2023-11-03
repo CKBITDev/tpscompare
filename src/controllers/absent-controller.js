@@ -21,7 +21,6 @@ export default class AbsentController{
 
             let dataBody = req.body;
             let outsideActivity = "N";
-
             let user_id = req.auth.user_id;
             let employee_id    = req.auth.employee_id;
             let employee_name  = req.auth.fullname;
@@ -56,7 +55,7 @@ export default class AbsentController{
                     outsideActivity = "Y";
                 }
             }
-            let timeZone = await TimezoneHelper.getTimeZone(long_lat);
+            let timeZone = await TimezoneHelper.getTimeZone(long_lat,time_absen);
             let timeAbsenServer = timeZone.waktu;
             let zonaAbsenServer = timeZone.zonaName;
             let dateAbsenServer = date_absen;
@@ -192,7 +191,7 @@ export default class AbsentController{
                 return Response.Error(req,res,` Clock out gagal di proses karena GPS/Lokasi di smartphone anda belum aktif, silahkan aktifkan GPS/Lokasi anda`);
             }
            
-            let timeZone = await TimezoneHelper.getTimeZone(long_lat);
+            let timeZone = await TimezoneHelper.getTimeZone(long_lat,time_absen);
             let timeAbsenServer = timeZone.waktu;
             let zonaAbsenServer = timeZone.zonaName;
             let dateAbsenServer = date_absen;
