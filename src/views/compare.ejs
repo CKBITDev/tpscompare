@@ -1,0 +1,44 @@
+
+
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="width: 100%;">
+    <h1>Compare Data <%= title %></h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>no</th>
+                <th>jde_item_code</th>
+                <th>no_bc11</th>
+                <th>no_pos_bc11</th>
+                <th>jml_tps</th>
+                <th>jml_jde</th>
+                <th>compare</th>
+            </tr>
+            <% let code = "3" %>
+
+            <% for(var i=0; i< data.length; i++) {%>
+                <% let link =  '?title=' + title + '&code=' + code +  '&jde_item_code=' + data[i].jde_item_code + '&no_bc11=' + data[i].no_bc11 + '&no_pos_bc11=' + data[i].no_pos_bc11 + '&jml_tps=' + data[i].jml_tps + '&jde_jml=' + data[i].jde_jml %>
+                <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= data[i].jde_item_code %></td>
+                    <td><%= data[i].no_bc11 %></td>
+                    <td><%= data[i].no_pos_bc11 %></td>
+                    <td><%= data[i].jml_tps %></td>
+                    <td><%= data[i].jde_jml %></td>
+                    <td><%- data[i].compare == "NO" ? `<b>NO</b><a href="/deleting${link}" class="btn btn-danger">Deleting TPS</a>` : data[i].compare %></td>
+
+
+                 </tr>
+
+            <% } %>
+        </table>
+    
+</body>
+</html>

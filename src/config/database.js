@@ -1,5 +1,5 @@
 
-import { createPool } from 'mysql';
+import { createPool } from 'mysql2';
 import {NODE_ENV,
 DB_NAME,
 DB_USER,
@@ -13,7 +13,6 @@ DB_NAME_TESTING,
 DB_USER_TESTING,
 DB_PASSWORD_TESTING,
 DB_HOST_TESTING} from "@env"
-import Logger from '../utils/logger';
 
 let pool;
 export const databaseInit = () => {
@@ -54,11 +53,13 @@ export const databaseInit = () => {
                 multipleStatements: true,
                 timezone: 'Asia/Jakarta'
             };
+            console.log(configDb);
+            
 
             pool = createPool(configDb);
 
         }catch(error){
-            Logger.createLog(error.message)
+            
         }
         
 };

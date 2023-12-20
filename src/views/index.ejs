@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Compare generate</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <% 
+        let linkInbound =  '?title=inbound&code=1'; 
+        let linkOutbound =  '?title=outbound&code=3'; 
+        let linkAdjustmentX =  '?title=adjustment&code=X'; 
+        let linkAdjustmentY =  '?title=adjustment&code=Y'; 
+    %>
+                
+    <body>
+        <h1>Compare TPS</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>Title</th>
+                <th>View</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <th>Inbound</th>
+                <td><a href="/compare/inbound" class="btn btn-primary">View compare</a></td>
+                <td><a href="/generate<%= linkInbound %>" class="btn btn-success">Generate Compare</a></td>
+            </tr>
+            <tr>
+                <th>Outbound</th>
+                <td><a href="/compare/outbound" class="btn btn-primary">View compare</a></td>
+                <td><a href="/generate<%= linkOutbound %>" class="btn btn-success">Generate Compare</a></td>
+            </tr>
+            <tr>
+                <th>Adjustment X</th>
+                <td><a href="/compare/adjustment_x" class="btn btn-primary">View compare</a></td>
+                <td><a href="/generate<%= linkAdjustmentX %>" class="btn btn-success">Generate Compare</a></td>
+            </tr>
+            <tr>
+                <th>Adjustment Y</th>
+                <td><a href="/compare/adjustment_y" class="btn btn-primary">View compare</a></td>
+                <td><a href="/generate<%= linkAdjustmentY %>" class="btn btn-success">Generate Compare</a></td>
+            </tr>
+        </table>
+    </body>
+</html>

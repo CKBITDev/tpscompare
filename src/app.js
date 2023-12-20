@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import router from "./routes/router"
 import cors from "cors"
 import { databaseInit } from "./config/database";
-import Logger from "./utils/logger";
+import path from "path";
 
 
 var corsOptions = {
@@ -14,6 +14,11 @@ var corsOptions = {
 }
 
 const app = express();
+app.set('view engine', 'ejs');
+// Specify the directory where your views are located
+app.set('views', path.join(__dirname, 'views')); // Change 'views' to your custom directory name
+
+
 app.use(cors(corsOptions))
 databaseInit();
 app.use(bodyParser.json());

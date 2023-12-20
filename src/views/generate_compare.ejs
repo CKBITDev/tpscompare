@@ -1,0 +1,102 @@
+<html>
+<head>
+    <style>table{ width: 500px}</style>
+</head>
+<body style="width: 100%;">
+    <h1><%= title %></h1>
+    <p><%= jdeId.join(",") %></p>
+        <table border="1">
+            <tr>
+                <th colspan="11">JDE -> TPS ( Added )</th>
+            </tr>
+            <tr>
+                <th colspan="6">JDE</th>
+                <th colspan="5">TPS</th>
+            </tr>
+            <tr>
+                <th>NO</th>
+                <th>ID</th>
+                <th>jde_item_code</th>
+                <th>no_bc11</th>
+                <th>no_pos_bc11</th>
+                <th>qty</th>
+
+                <th>ID</th>
+                <th>jde_item_code</th>
+                <th>no_bc11</th>
+                <th>no_pos_bc11</th>
+                <th>qty</th>
+            </tr>
+
+            <% for(var i=0; i< data.length; i++) {%>
+                <% let length = data[i].fromJDE.tps.length >= data[i].fromJDE.tps.length ? data[i].fromJDE.jde.length : data[i].fromJDE.jde.length  %>
+                <% for(var j=0; j < length; j++) {%>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= typeof data[i].fromJDE.jde[j] === 'undefined' ? '' : data[i].fromJDE.jde[j].id %></td>
+                    <td><%= typeof data[i].fromJDE.jde[j] === 'undefined' ? '' : data[i].fromJDE.jde[j].jde_item_code_jde %></td>
+                    <td><%= typeof data[i].fromJDE.jde[j] === 'undefined' ? '' : data[i].fromJDE.jde[j].no_bc11_jde %></td>
+                    <td><%= typeof data[i].fromJDE.jde[j] === 'undefined' ? '' : data[i].fromJDE.jde[j].no_pos_bc11_jde %></td>
+                    <td><%= typeof data[i].fromJDE.jde[j] === 'undefined' ? '' : data[i].fromJDE.jde[j].jml_satuan_jde %></td>
+
+                    <td><%= typeof data[i].fromJDE.tps[j] === 'undefined' ? '' : (data[i].fromJDE.tps[j].id === null ? '' : data[i].fromJDE.tps[j].id) %></td>
+                    <td><%= typeof data[i].fromJDE.tps[j] === 'undefined' ? '' : (data[i].fromJDE.tps[j].id === null ? '' : data[i].fromJDE.tps[j].jde_item_code) %></td>
+                    <td><%= typeof data[i].fromJDE.tps[j] === 'undefined' ? '' : (data[i].fromJDE.tps[j].id === null ? '' : data[i].fromJDE.tps[j].no_bc11) %></td>
+                    <td><%= typeof data[i].fromJDE.tps[j] === 'undefined' ? '' : (data[i].fromJDE.tps[j].id === null ? '' : data[i].fromJDE.tps[j].no_pos_bc11) %></td>
+                    <td><%= typeof data[i].fromJDE.tps[j] === 'undefined' ? '' : (data[i].fromJDE.tps[j].id === null ? '' : data[i].fromJDE.tps[j].jml_satuan) %></td>
+                </tr>
+
+                <% } %>
+            <% } %>
+        </table>
+        <p><%= tpsId.join(",") %></p>
+
+        <p><%= tpsDetailId.join(",") %></p>
+        <table border="1">
+            <tr>
+                <th colspan="11">TPS -> JDE ( Deleted )</th>
+            </tr>
+            <tr>
+                <th colspan="6">JDE</th>
+                <th colspan="5">TPS</th>
+            </tr>
+            <tr>
+                <th>NO</th>
+                <th>ID</th>
+                <th>jde_item_code</th>
+                <th>no_bc11</th>
+                <th>no_pos_bc11</th>
+                <th>qty</th>
+    
+                <th>ID</th>
+                <th>jde_item_code</th>
+                <th>no_bc11</th>
+                <th>no_pos_bc11</th>
+                <th>qty</th>
+            </tr>
+    
+           
+            <% for(var i=0; i< data.length; i++) {%>
+                <% let length = data[i].fromTPS.tps.length >= data[i].fromTPS.jde.length ? data[i].fromTPS.tps.length : data[i].fromTPS.jde.length  %>
+                <% for(var j=0; j < length; j++) {%>
+                <tr>
+                    <td><%= j+1 %></td> 
+                    <td><%= typeof data[i].fromTPS.jde[j] === 'undefined' ? '' : data[i].fromTPS.jde[j].id %></td>
+                    <td><%= typeof data[i].fromTPS.jde[j] === 'undefined' ? '' : data[i].fromTPS.jde[j].jde_item_code_jde %></td>
+                    <td><%= typeof data[i].fromTPS.jde[j] === 'undefined' ? '' : data[i].fromTPS.jde[j].no_bc11_jde %></td>
+                    <td><%= typeof data[i].fromTPS.jde[j] === 'undefined' ? '' : data[i].fromTPS.jde[j].no_pos_bc11_jde %></td>
+                    <td><%= typeof data[i].fromTPS.jde[j] === 'undefined' ? '' : data[i].fromTPS.jde[j].jml_satuan_jde %></td>
+
+                    <td><%= typeof data[i].fromTPS.tps[j] === 'undefined' ? '' : (data[i].fromTPS.tps[j].id === null ? '' : data[i].fromTPS.tps[j].id) %></td>
+                    <td><%= typeof data[i].fromTPS.tps[j] === 'undefined' ? '' : (data[i].fromTPS.tps[j].id === null ? '' : data[i].fromTPS.tps[j].jde_item_code) %></td>
+                    <td><%= typeof data[i].fromTPS.tps[j] === 'undefined' ? '' : (data[i].fromTPS.tps[j].id === null ? '' : data[i].fromTPS.tps[j].no_bc11) %></td>
+                    <td><%= typeof data[i].fromTPS.tps[j] === 'undefined' ? '' : (data[i].fromTPS.tps[j].id === null ? '' : data[i].fromTPS.tps[j].no_pos_bc11) %></td>
+                    <td><%= typeof data[i].fromTPS.tps[j] === 'undefined' ? '' : (data[i].fromTPS.tps[j].id === null ? '' : data[i].fromTPS.tps[j].jml_satuan) %></td>
+                </tr>
+
+                <% } %>
+            <% } %>
+        </table>
+    
+</body>
+</html>
