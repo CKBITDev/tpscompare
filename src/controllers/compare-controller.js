@@ -65,6 +65,7 @@ export default class CompareController{
         for (let index = 0; index < dataNotMatch.length; index++) {
             const notMatch = dataNotMatch[index];
             const whereTps = []
+            //=======  PROCES DELETE =========
             if(notMatch.jde_item_code){
                 whereTps.push(`jde_item_code = '${notMatch.jde_item_code}'`)
             }
@@ -84,21 +85,9 @@ export default class CompareController{
                 var dataJde = await executeQuery(`select id,OTLITM as jde_item_code_jde,OTBC11 as no_bc11_jde,OTPOSN as no_pos_bc11_jde,OTQTY as jml_satuan_jde,OTDIOT AS wk_inout_jde,jde_tps.* from jde_tps where OTLITM = '${tps.jde_item_code}' and OTBC11 = '${tps.no_bc11}' and OTPOSN = '${tps.no_pos_bc11}' and OTDCCD = '3' and OTDIOT = '${tps.wk_inout}'  order by OTQTY asc`); 
                 
                 if(dataJde.length > 0){
-                    // let isAny = false;
-                    // for (let index2 = 0; index2 < dataJdeNew.length; index2++) {
-                    //     const jdeNew = dataJdeNew[index2];
-                    //     if(dataJde[0].no_bc11_jde == jdeNew.no_bc11_jde && dataJde[0].no_pos_bc11_jde == jdeNew.no_pos_bc11_jde && dataJde[0].jml_satuan_jde == jdeNew.jml_satuan_jde && dataJde[0].wk_inout_jde == jdeNew.wk_inout_jde){
-                    //         isAny = true;
-                    //     }
-                    // }
-                    // if(isAny){
-                    //     tpsId.push(tps.h_id)
-                    //     tpsDetailId.push(tps.id)
-                    //     dataJdeNew.push({id:null})
-                    // }else{
-                        dataJdeNewId.push(dataJde[0].id) 
-                        dataJdeNew.push(dataJde[0]);
-                    //}
+                    dataJdeNewId.push(dataJde[0].id) 
+                    dataJdeNew.push(dataJde[0]);
+                
                 }else{
                     tpsId.push(tps.h_id)
                     tpsDetailId.push(tps.id)
@@ -113,6 +102,10 @@ export default class CompareController{
             if(tpsDetailId.length > 0){
                 await executeQuery(`delete from ${table}_detail where id in(${tpsDetailId.join(",")})`); 
             }
+
+            //=======  END OF PROCESS DELETE =========
+
+            //=======  PROCES ADD =========
 
             var dataJde = await executeQuery(`select id,OTLITM as jde_item_code_jde,OTBC11 as no_bc11_jde,OTPOSN as no_pos_bc11_jde,OTQTY as jml_satuan_jde,OTDIOT AS wk_inout_jde,jde_tps.* from jde_tps where(OTLITM,OTBC11,OTPOSN,OTDCCD) in (${queryNotMatchJdeIn}) order by OTQTY asc`); 
             //menampung data jde
@@ -140,6 +133,8 @@ export default class CompareController{
                     dataTpsNew.push({id:null})
                 } 
             }
+
+            //=======  END OF PROCES ADD =========
             dataNotMatch[index].fromJDE = {tps:dataTpsNew,jde:dataJde};
         }
         res.render('generate_compare',{data : dataNotMatch,tpsId:tpsId,jdeId:jdeId,tpsDetailId:tpsDetailId,title:title} );
